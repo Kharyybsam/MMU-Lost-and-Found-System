@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
+%}
+    <h1 align="center">This is the User Settings Page.</h1>
+    <h2>My Lost Items</h2>
+    <ul class="list-group list-group-flush" id="notes">
+        {% for note in user.notes %}
+        <li class="list-group-item">
+          {{ note.data }}  <!-- place lostitem,data here-->
+          <button type="button" class="close" onClick="deleteNote({{ note.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+    <h2>My Found Items</h2>
+    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+{% endblock %}

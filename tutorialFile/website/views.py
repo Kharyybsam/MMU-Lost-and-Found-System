@@ -64,5 +64,10 @@ def reportlostitempage():
             flash('Note added!', category='success')      
     return render_template("reportlostitem.html",user=current_user)
 
+@views.route('/user-settings')
+@login_required
+def usersettings():
+    return render_template("usersettings.html",user=current_user)
+
 
 
