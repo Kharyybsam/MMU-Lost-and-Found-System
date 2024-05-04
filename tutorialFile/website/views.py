@@ -6,7 +6,7 @@ import json
 
 views = Blueprint('views', __name__)
 
-
+#danishgay
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():   #this function wil run whenever we go to "/"
