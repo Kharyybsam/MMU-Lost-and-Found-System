@@ -37,6 +37,18 @@ def delete_note():
 
     return jsonify({})
 
+
+@views.route('/delete-lostitem', methods=['POST'])
+def delete_lostitem():  
+    lostitem = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
+    lostitemid = lostitem['lostitemid']
+    lostitem = Lostitem.query.get(lostitemid)
+    if lostitem:
+        if lostitem.user_id == current_user.id:
+            db.session.delete(lostitem)
+            db.session.commit()
+
+    return jsonify({})
 @views.route('/reportitem')
 @login_required
 def reportitempage():
@@ -55,10 +67,11 @@ def reportfounditempage():
 def reportlostitempage():
     if request.method == 'POST': 
         itemname = request.form.get('name')#Gets the note from the HTML 
+        itemdescription = request.form.get('description')
         if len(itemname) < 1:
             flash('Note is too short!', category='error') 
         else:
-            new_lostitems = Lostitem(perru=itemname, user_id=current_user.id)  #providing the schema for the note 
+            new_lostitems = Lostitem(perru=itemname,description=itemdescription, user_id=current_user.id)  #providing the schema for the note 
             db.session.add(new_lostitems) #adding the note to the database 
             db.session.commit()
             flash('Note added!', category='success')      

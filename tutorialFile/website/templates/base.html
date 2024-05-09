@@ -86,6 +86,14 @@
     window.location.href = "/";
   });
   }
+  function deleteItem(lostitemid) {
+  fetch("/delete-lostitem", {
+    method: "POST",
+    body: JSON.stringify({ lostitemid: lostitemid }),
+  }).then((_res) => {
+    window.location.href = "/user-settings"; ///user-settings
+  });
+}
 </script>
 {% endblock %}
   </body>
