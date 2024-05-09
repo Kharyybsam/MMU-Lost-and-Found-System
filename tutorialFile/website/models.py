@@ -17,16 +17,17 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     notes = db.relationship('Note')
-    lost_item = db.relationship('LostItem')
+    lost_item = db.relationship('Lostitem')
     found_item = db.relationship('FoundItem')
     image_item = db.relationship('Image')
 
-class LostItem(db.Model):
+class Lostitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    perru = db.Column(db.String(1000))
     description = db.Column(db.String(999999))
     date_lost = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    image = db.Column(db.Integer, db.ForeignKey('image'))
+#    image = db.Column(db.Integer, db.ForeignKey('image'))
 
 class FoundItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)

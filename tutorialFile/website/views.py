@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Note
+from .models import Lostitem
 from . import db
 import json
 
@@ -53,13 +54,12 @@ def reportfounditempage():
 @login_required
 def reportlostitempage():
     if request.method == 'POST': 
-        note = request.form.get('note')#Gets the note from the HTML 
-
-        if len(note) < 1:
+        itemname = request.form.get('name')#Gets the note from the HTML 
+        if len(itemname) < 1:
             flash('Note is too short!', category='error') 
         else:
-            new_note = Note(data=note, user_id=current_user.id)  #providing the schema for the note 
-            db.session.add(new_note) #adding the note to the database 
+            new_lostitems = Lostitem(perru=itemname, user_id=current_user.id)  #providing the schema for the note 
+            db.session.add(new_lostitems) #adding the note to the database 
             db.session.commit()
             flash('Note added!', category='success')      
     return render_template("reportlostitem.html",user=current_user)
