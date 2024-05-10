@@ -27,7 +27,9 @@ class Lostitem(db.Model):
     description = db.Column(db.String(999999))
     date_lost = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-#   image = db.Column(db.Integer, db.ForeignKey('image'))
+    image_file = db.Column(db.Text, nullable=False)
+    image_name = db.Column(db.Text, nullable=False)
+    image_mimetype = db.Column(db.Text, nullable=False)
 
 class FoundItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)

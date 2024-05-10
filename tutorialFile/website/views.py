@@ -2,7 +2,9 @@ from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Note
 from .models import Lostitem
+from os import path
 from . import db
+import base64
 import json
 
 views = Blueprint('views', __name__)
@@ -66,15 +68,18 @@ def reportfounditempage():
 @login_required
 def reportlostitempage():
     if request.method == 'POST': 
+        picture = request.files['pic']
         itemname = request.form.get('name')#Gets the note from the HTML 
         itemdescription = request.form.get('description')
+        imagebase64 = picture.read()
+        imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Note is too short!', category='error') 
         else:
-            new_lostitems = Lostitem(perru=itemname,description=itemdescription, user_id=current_user.id)  #providing the schema for the note 
+            new_lostitems = Lostitem(perru=itemname,description=itemdescription, user_id=current_user.id,image_name=imagebase64)  #providing the schema for the note 
             db.session.add(new_lostitems) #adding the note to the database 
             db.session.commit()
-            flash('Note added!', category='success')      
+            flash('Lost Item added!', category='success')      
     return render_template("reportlostitem.html",user=current_user)
 
 @views.route('/user-settings')
