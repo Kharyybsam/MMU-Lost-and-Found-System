@@ -6,12 +6,15 @@
 
 
 <form method="POST" enctype="multipart/form-data">
+  <label for="pic">Upload an image:</label>
+  <br />
   <input type="file" name="pic" />
-  Name
-    <textarea name="name" id="name" class="form-control"></textarea>
+  <br />
+  What Item did you lose?
+    <textarea name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.."></textarea>
     <br />
   Description
-  <textarea name="description" id="description" class="form-control"></textarea>
+  <textarea name="description" id="description" class="form-control" placeholder="How,When,Where did you lost your item?"></textarea>
     <div align="center">
       <button type="submit" class="btn btn-primary">Add Note</button>
     </div>

@@ -2,15 +2,7 @@
 %}
 <h1 align="center">Home Page</h1>
 
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}  <!-- place lostitem,data here-->
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
+<h2></h2>
+
 
 {% endblock %}
