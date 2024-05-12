@@ -4,12 +4,21 @@
 
 
 
-    
-<form method="POST">
-    <textarea name="note" id="note" class="form-contrssol"></textarea>
+
+<form method="POST" enctype="multipart/form-data">
+  <label for="pic">Upload an image:</label>
+  <br />
+  <input type="file" name="pic" />
+  <br />
+  What Item did you lose?
+    <textarea name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.."></textarea>
     <br />
+  Description
+  <textarea name="description" id="description" class="form-control" placeholder="How,When,Where did you lost your item?"></textarea>
+  How do you want people to contact you?
+  <textarea name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
     <div align="center">
-      <button type="submit" class="btn btn-primary">Add Note</button>
+      <button type="submit" class="btn btn-primary">Add Item</button>
     </div>
   </form>
 {% endblock %}

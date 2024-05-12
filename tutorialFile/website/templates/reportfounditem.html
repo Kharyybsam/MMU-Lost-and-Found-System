@@ -2,6 +2,20 @@
     %}
     <h1 align="center">Report Found Item.</h1>
 
-    <h1>input box here</h1>
-
+    <form method="POST" enctype="multipart/form-data">
+      <label for="pic">Please Upload an image of the item you found:</label>
+      <br />
+        <input type="file" name="pic" />
+        <br />
+        Where did you found this item?
+          <textarea name="name" id="name" class="form-control" placeholder="DTC,Classroom CMX1001,FCM Building"></textarea>
+          <br />
+        Description
+        <textarea name="description" id="description" class="form-control" placeholder="Please provide as many details as you can about the item.,eg Black leather wallet,Playboy Brand "></textarea>
+        How do you want people to contact you?
+        <textarea name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Add Item</button>
+          </div>
+        </form>
 {% endblock %}

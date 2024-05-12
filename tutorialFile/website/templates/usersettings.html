@@ -3,15 +3,44 @@
     <h1 align="center">This is the User Settings Page.</h1>
     <h2>My Lost Items</h2>
     <ul class="list-group list-group-flush" id="notes">
-        {% for note in user.notes %}
+        {% for lostitem in user.lost_item %}
+        <img src="data:image/png;base64,{{lostitem.image_name.decode('utf-8')}}" style="width:500px;height:300px;">
         <li class="list-group-item">
-          {{ note.data }}  <!-- place lostitem,data here-->
-          <button type="button" class="close" onClick="deleteNote({{ note.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+        Name
+        </br>
+          {{lostitem.perru}}  <!-- place lostitem,data here-->
+        </br>
+          Description
+        </br>          
+          {{ lostitem.description }}
+        </br>
+        Date Reported: {{ lostitem.date_lost}}
+          <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
             <span aria-hidden="true">&times;</span>
           </button>
         </li>
+        
         {% endfor %}
       </ul>
     <h2>My Found Items</h2>
+    <ul class="list-group list-group-flush" id="notes">
+      {% for founditem in user.found_item %}
+      <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" style="width:500px;height:300px;">
+      <li class="list-group-item">
+      Name : {{founditem.name}}  <!-- place lostitem,data here-->
+      </br>
+        Description : {{ founditem.description }}
+    </br>
+      Contact Info: {{ founditem.contact}}
+    </br>
+    Date Reported: {{ founditem.date_found}}
+        <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </li>
+      
+      {% endfor %}
+    </ul>
+
     <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
 {% endblock %}

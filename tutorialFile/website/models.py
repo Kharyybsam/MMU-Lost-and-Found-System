@@ -17,27 +17,25 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     notes = db.relationship('Note')
-    lost_item = db.relationship('LostItem')
-    found_item = db.relationship('FoundItem')
-    image_item = db.relationship('Image')
+    lost_item = db.relationship('Lostitem')
+    found_item = db.relationship('Founditem')
 
-class LostItem(db.Model):
+class Lostitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    perru = db.Column(db.String(1000))             #it will crash if perru is changed. try click refresh and reset cache in browser next time
     description = db.Column(db.String(999999))
     date_lost = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    image = db.Column(db.Integer, db.ForeignKey('image'))
+    image_file = db.Column(db.Text, nullable=False)
+    image_name = db.Column(db.Text, nullable=False)
+    image_mimetype = db.Column(db.Text, nullable=False)
+    contact = db.Column(db.Text,nullable=False)
 
-class FoundItem(db.Model):
+class Founditem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
     description = db.Column(db.String(999999))
     date_found = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    image = db.Column(db.Integer, db.ForeignKey('image'))
-
-class Image(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    img = db.Column(db.Text, unique=True, nullable=False)
-    name = db.Column(db.Text, nullable=False)
-    mimetype = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    image_file = db.Column(db.Text, nullable=False)
+    contact = db.Column(db.Text,nullable=False)
