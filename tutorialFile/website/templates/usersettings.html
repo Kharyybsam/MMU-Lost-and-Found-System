@@ -13,7 +13,8 @@
           Description
         </br>          
           {{ lostitem.description }}
-          
+        </br>
+        Date Reported: {{ lostitem.date_lost}}
           <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
             <span aria-hidden="true">&times;</span>
           </button>
@@ -26,14 +27,13 @@
       {% for founditem in user.found_item %}
       <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" style="width:500px;height:300px;">
       <li class="list-group-item">
-      Name
+      Name : {{founditem.name}}  <!-- place lostitem,data here-->
       </br>
-        {{founditem.name}}  <!-- place lostitem,data here-->
-      </br>
-        Description
-      </br>          
-        {{ founditem.description }}
-        
+        Description : {{ founditem.description }}
+    </br>
+      Contact Info: {{ founditem.contact}}
+    </br>
+    Date Reported: {{ founditem.date_found}}
         <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
           <span aria-hidden="true">&times;</span>
         </button>
