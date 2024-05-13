@@ -1,16 +1,22 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
     %}
-<h1 align="center">This is the Report Item Page.</h1>
 
-<div class="container-fluid">
+<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+
+<!--Starting Grid-->
+<div class="container-fluid border rounded-bottom" style="padding-bottom: 1%; background-color: white;">
+
+    <div  class="">
+        <h1 align="center">This is the Report Item Page.</h1>
+    </div>
 
     <div class="row text-center ">
 
         <div class="col-md-6 col-xs-12">
+            <!--First Grid-->
 
-
-            <div class="bg-dark border border-dark" style="padding: 0%; margin-left: 0%;">
-                <a href="/reportlostitem">report lost item</a>
+            <div class="bg-dark border border-dark rounded-top" style="padding: 0%; margin-left: 0%;">
+                <a href="/reportlostitem" class="text-light">report lost item</a>
             </div>
 
             <div class=" border border-dark">
@@ -20,9 +26,10 @@
         </div>
     
         <div class="col-md-6 col-xs-12">
+            <!--Second Grid-->
 
-            <div class="bg-dark border border-dark" style="padding: 0%; margin-left: 0%;">
-                <a  href="/reportfounditem">report found item</a>
+            <div class="bg-dark border border-dark rounded-top" style="padding: 0%; margin-left: 0%;">
+                <a  href="/reportfounditem" class="text-light">report found item</a>
             </div>
 
             <div class=" border border-dark">
@@ -34,7 +41,6 @@
     </div>
 
 </div>
-
 
 
 
