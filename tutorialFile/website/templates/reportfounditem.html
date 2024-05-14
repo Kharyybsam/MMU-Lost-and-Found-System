@@ -1,7 +1,15 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
     %}
-    <h1 align="center">Report Found Item.</h1>
 
+<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+
+<div class="container-fluid rounded-bottom border" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+
+  <div class="border-bottom" style="margin-bottom: 2%;">
+    <h1 align="center">Report Found Item</h1>
+  </div>
+
+  <div>
     <form method="POST" enctype="multipart/form-data">
       <label for="pic">Please Upload an image of the item you found:</label>
       <br />
@@ -18,4 +26,8 @@
             <button type="submit" class="btn btn-primary">Add Item</button>
           </div>
         </form>
+  </div>
+
+</div>
+
 {% endblock %}
