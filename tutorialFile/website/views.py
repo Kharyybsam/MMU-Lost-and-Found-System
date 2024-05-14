@@ -24,7 +24,8 @@ def home():   #this function wil run whenever we go to "/"
             db.session.add(new_note) #adding the note to the database 
             db.session.commit()
             flash('Note added!', category='success')
-
+    
+    
     return render_template("home.html", user=current_user)
 
 
@@ -89,7 +90,7 @@ def reportfounditempage():
             new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,contact=itemcontact)  #providing the schema for the note 
             db.session.add(new_founditems) #adding the note to the database 
             db.session.commit()
-            flash('Lost Item added!', category='success')
+            flash('Found Item added!', category='success')
     return render_template("reportfounditem.html",user=current_user)
 
 @views.route('/reportlostitem',methods=['GET', 'POST'])
@@ -99,6 +100,7 @@ def reportlostitempage():
         picture = request.files['pic']
         itemname = request.form.get('name')#Gets the note from the HTML 
         itemdescription = request.form.get('description')
+        itemcontact = request.form.get('contact')
         imagebase64 = picture.read()
         imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
@@ -106,7 +108,7 @@ def reportlostitempage():
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
         else:
-            new_lostitems = Lostitem(perru=itemname,description=itemdescription, user_id=current_user.id,image_name=imagebase64)  #providing the schema for the note 
+            new_lostitems = Lostitem(perru=itemname,description=itemdescription, user_id=current_user.id,image_name=imagebase64,contact=itemcontact)  #providing the schema for the note 
             db.session.add(new_lostitems) #adding the note to the database 
             db.session.commit()
             flash('Lost Item added!', category='success')      
