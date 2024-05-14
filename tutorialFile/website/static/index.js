@@ -6,3 +6,15 @@ function deleteNote(noteId) {
     window.location.href = "/";
   });
 }
+
+function deleteItem(lostitemid) {
+  fetch("/delete-lostitem", {
+    method: "POST",
+    body: JSON.stringify({ lostitemid: lostitemid }),
+  }).then((_res) => {
+    window.location.href = "/user-settings"; ///user-settings
+  });
+}
+function yasuo(){
+  print('thisworks')
+}

@@ -1,17 +1,106 @@
 {% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
 %}
-    <h1 align="center">This is the User Settings Page.</h1>
-    <h2>My Lost Items</h2>
-    <ul class="list-group list-group-flush" id="notes">
-        {% for note in user.notes %}
-        <li class="list-group-item">
-          {{ note.data }}  <!-- place lostitem,data here-->
-          <button type="button" class="close" onClick="deleteNote({{ note.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+
+
+<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+
+<div class="container-fluid rounded-bottom border" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+<!--Grid-->
+
+
+
+<div>
+  <h2 align="center">This is the User Settings Page.</h2>
+</div>
+
+  <div class="row">
+
+    <div class="col-md-6 col-xs-12" style="padding-bottom: 2%;">
+      <!--Grid for Lost Item-->
+
+      <div class=" border-bottom ">
+        <h4 style="margin-left: 10px;">My Lost Items</h4>
+      </div>
+
+
+      <div class="border-bottom" style="padding-top: 2%;">
+        <ul class="list-group list-group-flush" id="notes">
+          {% for lostitem in user.lost_item %}
+          <img src="data:image/png;base64,{{lostitem.image_name.decode('utf-8')}}" style="height: 300px;">
+          <li class="list-group-item">
+          <b>Item: </b> {{lostitem.perru}}  <!-- place lostitem,data here-->
+          </br>
+          <b>Item Description:</b>
+          </br>  
+            {{ lostitem.description }}
+          </br>
+          <b>Contact Info:</b>
+          </br>
+            {{lostitem.contact}}
+
+          <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
             <span aria-hidden="true">&times;</span>
           </button>
-        </li>
-        {% endfor %}
-      </ul>
-    <h2>My Found Items</h2>
-    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+
+          <div class="text-muted" style="font-size: xx-small;">
+          Date Reported: {{ lostitem.date_lost}}
+          </div>
+          </li>
+          
+          {% endfor %}
+        </ul>
+      </div>
+
+  
+    </div>
+
+
+
+    <div class="col-md-6 col-xs-12 col-sm-12 ">
+      <!--Grid for Found Item-->
+
+      <div class=" border-bottom">
+        <h4 style="margin-left: 10px;">My Found Items</h4>
+      </div>
+
+      <div class="border-bottom" style="padding-top: 2%;">
+        <ul class="list-group list-group-flush" id="notes">
+          {% for founditem in user.found_item %}
+          <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" style="height: 300px;">
+          <li class="list-group-item">
+            <b>Item:</b> {{founditem.name}}  <!-- place lostitem,data here-->
+          </br>
+          <b>Item Description:</b>   
+          </br>
+            {{ founditem.description }}
+        </br>
+        <b>Contact Info:</b>
+          </br>
+          {{ founditem.contact}}
+        </br>
+
+          <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        <div class="text-muted" style="font-size: xx-small;">
+        Date Reported: {{ founditem.date_found}}
+        </div>
+          </li>
+          
+          {% endfor %}
+        </ul>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+<a href="/logout" id="logout" class="btn btn-info" role="button" style="font-weight: bold; margin-bottom: 5%;">Logout</a>
+
 {% endblock %}

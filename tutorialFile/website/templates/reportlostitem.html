@@ -1,15 +1,33 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
     %}
-    <h1 align="center">Report Lost Item.</h1>
+
+<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+
+<div class="container-fluid rounded-bottom border" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+
+  <div class="border-bottom" style="margin-bottom: 2%;">
+    <h1 align="center">Report Lost Item</h1>
+  </div>
 
 
-
-    
-<form method="POST">
-    <textarea name="note" id="note" class="form-contrssol"></textarea>
+ <div>
+<form method="POST" enctype="multipart/form-data">
+  <label for="pic">Upload an image:</label>
+  <br />
+  <input type="file" name="pic" />
+  <br />
+  What Item did you lose?
+    <textarea name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.."></textarea>
     <br />
+  Description
+  <textarea name="description" id="description" class="form-control" placeholder="How,When,Where did you lost your item?"></textarea>
+  How do you want people to contact you?
+  <textarea name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
     <div align="center">
-      <button type="submit" class="btn btn-primary">Add Note</button>
+      <button type="submit" class="btn btn-primary">Add Item</button>
     </div>
   </form>
+  </div>
+
+</div>
 {% endblock %}
