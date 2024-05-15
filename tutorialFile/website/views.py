@@ -9,12 +9,13 @@ import json
 
 views = Blueprint('views', __name__)
 
-
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():   #this function wil run whenever we go to "/"
-    
-    return render_template("home.html", user=current_user)
+    alllostitem = Lostitem.query.all()
+    allfounditem = Founditem.query.all()
+    return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem)
+
 
 
 @views.route('/delete-lostitem', methods=['POST'])
@@ -84,7 +85,7 @@ def reportlostitempage():
              flash('Please upload a picture of the item!',category='error')
         else:
             new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,contact=itemcontact)  #providing the schema for the note 
-            db.session.add(new_lostitems) #adding the note to the database 
+            db.session.add(new_lostitems) #what if i assign a homeid?
             db.session.commit()
             flash('Lost Item added!', category='success')      
     return render_template("reportlostitem.html",user=current_user)

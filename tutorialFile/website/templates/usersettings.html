@@ -28,7 +28,7 @@
           {% for lostitem in user.lost_item %}
           <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" style="height: 300px;">
           <li class="list-group-item">
-          <b>Item: </b> {{lostitem.perru}}  <!-- place lostitem,data here-->
+          <b>Item: </b> {{lostitem.name}}  <!-- place lostitem,data here-->
           </br>
           <b>Item Description:</b>
           </br>  
