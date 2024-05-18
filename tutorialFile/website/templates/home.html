@@ -1,8 +1,35 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script scr="https://unpkg.com/htmx.org@1.9.4"></script>
 <h1 align="center">Home Page</h1>
 
 <h2></h2>
+</head>
+<body>
+    <section class="section">
+        <div class="columns"> 
 
+         <div class="column is-one-third is-offset-one-third">
+             <input type="text" class="input" placeholder="Search" name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results" >
+         </div>
+        </div>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                 <th>Item Name</th>
+                 <th>Contact</th>
+                 <th>Date Lost</th>
+                </tr>
+            </thead>
+            <tbody id="results">
+
+            </tbody>
+        </table>
+    </section>
+</body>
 
 {% endblock %}

@@ -27,6 +27,18 @@ def home():   #this function wil run whenever we go to "/"
 
     return render_template("home.html", user=current_user)
 
+@views.route ('/search')
+def search():
+    q = request.args.get("q")
+    print(q)
+
+    if q: 
+        results = Lostitem.query.filter(Lostitem.name.icontains(q) | Lostitem.contact.icontains(q)) \
+        .order_by(Lostitem.date_lost.desc()).limit(100).all()
+    else :
+        results = []
+    
+    return render_template("search_results", results=results)
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():  
