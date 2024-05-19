@@ -1,55 +1,85 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
-<h1 align="center">Home Page</h1>
+{% extends "base.html" %} 
+{% block title %}
+Home
+{% endblock %} 
+{% block content %}
 
-<div class="border-bottom" style="padding-top: 2%;">
-   <ul class="list-group list-group-flush" id="notes">
-     {% for x in lostitem %}
-     <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" style="height: 300px;">
-     <li class="list-group-item">
-     <b>Item: </b> {{x.name}}  <!-- place lostitem,data here-->
-     </br>
-     <b>Item Description:</b>
-     </br>  
-       {{ x.description }}
-     </br>
-     <b>Contact Info:</b>
-     </br>
-       {{x.contact}}
-       <div class="text-muted" style="font-size: xx-small;">
-         Date Reported: {{ x.date_lost}}
-         </div>
-         </li>
-         
-         {% endfor %}
-       </ul>
-     </div>
 
- 
-   <div class=" border-bottom">
+<div class="rounded-top text-light" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+  
+    <div  class="">
+        <h1 align="center" style="">🏠 Home</h1>
+    </div>
+  </div>
+
+<div class="container-fluid" style="background-color: white;">
+
+<div class="row">
+
+<div class="border-bottom col-md-6 " style="padding-top: 0%;">
+
+    <div  class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+        <h3 align="center" style="">Lost Item</h3>
     </div>
 
-    <div class="border-bottom" style="padding-top: 2%;">
-      <ul class="list-group list-group-flush" id="notes">
+
+    <ul class="list-group list-group-flush fade-in" id="lost-items">
+        {% for x in lostitem %}
+        <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
+            <li class="list-group-item">
+                <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
+                <br>
+                <b>Item: </b> {{x.name}}  
+                <br>
+                <b>Item Description:</b>
+                <br>  
+                {{ x.description }}
+                <br>
+                <b>Contact Info:</b>
+                <br>
+                {{x.contact}}
+                <div class="text-muted" style="font-size: xx-small;">
+                    Date Reported: {{ x.date_lost}}
+                </div>
+            </li>
+
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+<div class="border-bottom col-md-6" style="padding-top: 0%;">
+
+    <div  class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+        <h3 align="center" style="">Found Item</h3>
+    </div>
+
+
+    <ul class="list-group list-group-flush fade-in" id="found-items">
         {% for y in founditem %}
-        <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" style="height: 300px;">
+        <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
         <li class="list-group-item">
-          <b>Item:</b> {{y.name}}  <!-- place lostitem,data here-->
-        </br>
-        <b>Item Description:</b>   
-        </br>
-          {{ y.description }}
-      </br>
-      <b>Contact Info:</b>
-        </br>
-        {{ y.contact}}
-      </br>
-      <div class="text-muted" style="font-size: xx-small;">
-         Date Reported: {{ y.date_found}}
-         </div>
-           </li>
-           
-           {% endfor %}
-         </ul>
-       </div>
-   {% endblock %}
+            <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
+            <br>
+            <b>Item:</b> {{y.name}}  
+            <br>
+            <b>Item Description:</b>   
+            <br>
+            {{ y.description }}
+            <br>
+            <b>Contact Info:</b>
+            <br>
+            {{ y.contact}}
+            <div class="text-muted" style="font-size: xx-small;">
+                Date Reported: {{ y.date_found}}
+            </div>
+        </li>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+</div>
+{% endblock %}
