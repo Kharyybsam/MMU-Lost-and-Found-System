@@ -24,7 +24,7 @@
       </div>
 
 
-      <div class="border border-dark rounded-bottom" style="padding-top: 2%; margin-top: 0%;">
+      <div class="border border-dark rounded-bottom" style=" margin-top: 0%;">
         <ul class="list-group list-group-flush" id="notes">
           {% for lostitem in user.lost_item %}
           <img src="data:image/png;base64,{{lostitem.image_name.decode('utf-8')}}">
@@ -64,7 +64,7 @@
         <h4 class="border border-dark rounded-top text-light" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Found Items</h4>
       </div>
 
-      <div class="border border-dark rounded-bottom" style="padding-top: 2%;">
+      <div class="border border-dark rounded-bottom" style="">
         <ul class="list-group list-group-flush" id="notes">
           {% for founditem in user.found_item %}
           <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}">
