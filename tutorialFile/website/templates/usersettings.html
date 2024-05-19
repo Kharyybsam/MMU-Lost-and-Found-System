@@ -27,9 +27,13 @@
       <div class="border border-dark rounded-bottom" style="padding-top: 2%; margin-top: 0%;">
         <ul class="list-group list-group-flush" id="notes">
           {% for lostitem in user.lost_item %}
+<<<<<<< HEAD
           <img src="data:image/png;base64,{{lostitem.image_name.decode('utf-8')}}">
+=======
+          <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" style="height: 300px;">
+>>>>>>> origin/main
           <li class="list-group-item">
-          <b>Item: </b> {{lostitem.perru}}  <!-- place lostitem,data here-->
+          <b>Item: </b> {{lostitem.name}}  <!-- place lostitem,data here-->
           </br>
           <b>Item Description:</b>
           </br>  

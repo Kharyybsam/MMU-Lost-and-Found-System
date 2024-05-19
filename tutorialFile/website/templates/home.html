@@ -2,7 +2,54 @@
 %}
 <h1 align="center">Home Page</h1>
 
-<h2></h2>
+<div class="border-bottom" style="padding-top: 2%;">
+   <ul class="list-group list-group-flush" id="notes">
+     {% for x in lostitem %}
+     <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" style="height: 300px;">
+     <li class="list-group-item">
+     <b>Item: </b> {{x.name}}  <!-- place lostitem,data here-->
+     </br>
+     <b>Item Description:</b>
+     </br>  
+       {{ x.description }}
+     </br>
+     <b>Contact Info:</b>
+     </br>
+       {{x.contact}}
+       <div class="text-muted" style="font-size: xx-small;">
+         Date Reported: {{ x.date_lost}}
+         </div>
+         </li>
+         
+         {% endfor %}
+       </ul>
+     </div>
 
+ 
+   <div class=" border-bottom">
+    </div>
 
-{% endblock %}
+    <div class="border-bottom" style="padding-top: 2%;">
+      <ul class="list-group list-group-flush" id="notes">
+        {% for y in founditem %}
+        <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" style="height: 300px;">
+        <li class="list-group-item">
+          <b>Item:</b> {{y.name}}  <!-- place lostitem,data here-->
+        </br>
+        <b>Item Description:</b>   
+        </br>
+          {{ y.description }}
+      </br>
+      <b>Contact Info:</b>
+        </br>
+        {{ y.contact}}
+      </br>
+      <div class="text-muted" style="font-size: xx-small;">
+         Date Reported: {{ y.date_found}}
+         </div>
+           </li>
+           
+           {% endfor %}
+         </ul>
+       </div>
+   {% endblock %}
