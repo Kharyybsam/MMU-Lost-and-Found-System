@@ -1,32 +1,44 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
     %}
 
-<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+    <div class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
 
-<div class="container-fluid rounded-bottom border" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+      <div  class="">
+        <h1 align="center" style="">Report Lost Item </h1>
+      </div>
+    </div>
 
-  <div class="border-bottom" style="margin-bottom: 2%;">
-    <h1 align="center">Report Lost Item</h1>
-  </div>
-
+<div class="container-fluid rounded-bottom border fade-in" style="background-color: white; margin-bottom: 2%;">
 
  <div>
 <form method="POST" enctype="multipart/form-data">
   <label for="pic">Upload an image:</label>
-  <br />
+  <br/>
   <input type="file" name="pic" />
-  <br />
-  What Item did you lose?
-    <textarea name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.."></textarea>
-    <br />
-  Description
-  <textarea name="description" id="description" class="form-control" placeholder="How,When,Where did you lost your item?"></textarea>
-  How do you want people to contact you?
-  <textarea name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
-    <div align="center">
-      <button type="submit" class="btn btn-primary">Add Item</button>
+  <br/><br>
+
+  <p>What Item did you lose?</p>
+    <textarea rows="1" name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.."></textarea>
+    <br/>
+
+  <p>Description</p>
+  <textarea rows="10" name="description" id="description" class="form-control" placeholder="How,When,Where did you lost your item?"></textarea>
+  <br/>
+
+  <p>How do you want people to contact you?</p>
+  <textarea rows="2" name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
+    <div align="center" style="margin: 2%;">
+      <button type="submit" class="btn text-light hover-effect" style="background-color: rgb(46, 58, 77);">Add Item</button>
     </div>
   </form>
+  </div>
+
+  <div class="text-muted" style="font-size: small;">
+    <h6>Remember The 3W when Reporting!</h6>
+    <p>1. What? Any details that is special to your item? Say it!</p>
+    <p>2. When? At what time do you realise it's gone.</p>
+    <p>3. Where? Try to remember and state where you last seen the item.</p>
+
   </div>
 
 </div>

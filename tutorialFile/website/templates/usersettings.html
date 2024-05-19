@@ -2,31 +2,32 @@
 %}
 
 
-<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+<div class="rounded-top text-light" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
 
-<div class="container-fluid rounded-bottom border" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+  <div  class="">
+      <h1 align="center" style="">User Setting </h1>
+  </div>
+</div>
+
+<div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
 <!--Grid-->
 
 
-
-<div>
-  <h2 align="center">This is the User Settings Page.</h2>
-</div>
 
   <div class="row">
 
     <div class="col-md-6 col-xs-12" style="padding-bottom: 2%;">
       <!--Grid for Lost Item-->
 
-      <div class=" border-bottom ">
-        <h4 style="margin-left: 10px;">My Lost Items</h4>
+      <div class="  ">
+        <h4  class="border border-dark rounded-top text-light" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Lost Items</h4>
       </div>
 
 
-      <div class="border-bottom" style="padding-top: 2%;">
+      <div class="border border-dark rounded-bottom" style="padding-top: 2%; margin-top: 0%;">
         <ul class="list-group list-group-flush" id="notes">
           {% for lostitem in user.lost_item %}
-          <img src="data:image/png;base64,{{lostitem.image_name.decode('utf-8')}}" style="height: 300px;">
+          <img src="data:image/png;base64,{{lostitem.image_name.decode('utf-8')}}">
           <li class="list-group-item">
           <b>Item: </b> {{lostitem.perru}}  <!-- place lostitem,data here-->
           </br>
@@ -59,14 +60,14 @@
     <div class="col-md-6 col-xs-12 col-sm-12 ">
       <!--Grid for Found Item-->
 
-      <div class=" border-bottom">
-        <h4 style="margin-left: 10px;">My Found Items</h4>
+      <div>
+        <h4 class="border border-dark rounded-top text-light" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Found Items</h4>
       </div>
 
-      <div class="border-bottom" style="padding-top: 2%;">
+      <div class="border border-dark rounded-bottom" style="padding-top: 2%;">
         <ul class="list-group list-group-flush" id="notes">
           {% for founditem in user.found_item %}
-          <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" style="height: 300px;">
+          <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}">
           <li class="list-group-item">
             <b>Item:</b> {{founditem.name}}  <!-- place lostitem,data here-->
           </br>
@@ -98,9 +99,15 @@
 
   </div>
 
+  <div>
+    <a href="/logout" id="logout" 
+    class="btn text-light hover-effect" role="button" 
+    style="font-weight: bold; margin-bottom: 2%; background-color: rgb(46, 58, 77); margin-top: 2%;">
+    Logout</a>
+  </div>
 
 </div>
 
-<a href="/logout" id="logout" class="btn btn-info" role="button" style="font-weight: bold; margin-bottom: 5%;">Logout</a>
+
 
 {% endblock %}

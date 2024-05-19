@@ -1,29 +1,35 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
     %}
 
-<div class=" rounded-top" style="padding-top: 5px; margin-top: 1%; background-color: rgb(60,141,188);" ></div>
+<div class="rounded-top text-light" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
 
-<div class="container-fluid rounded-bottom border" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
-
-  <div class="border-bottom" style="margin-bottom: 2%;">
-    <h1 align="center">Report Found Item</h1>
+  <div  class="">
+    <h1 align="center" style="">Report Found Item </h1>
   </div>
+</div>
+
+<div class="container-fluid rounded-bottom border" style="background-color: white; padding-top: 2%; margin-bottom: 2%;">
+
 
   <div>
     <form method="POST" enctype="multipart/form-data">
       <label for="pic">Please Upload an image of the item you found:</label>
-      <br />
+      <br/>
         <input type="file" name="pic" />
-        <br />
-        Where did you found this item?
-          <textarea name="name" id="name" class="form-control" placeholder="DTC,Classroom CMX1001,FCM Building"></textarea>
-          <br />
-        Description
-        <textarea name="description" id="description" class="form-control" placeholder="Please provide as many details as you can about the item.,eg Black leather wallet,Playboy Brand "></textarea>
-        How do you want people to contact you?
+        <br/><br>
+
+        <p>Where did you found this item?</p>
+          <textarea rows="1" name="name" id="name" class="form-control" placeholder="DTC,Classroom CMX1001,FCM Building"></textarea>
+          <br/>
+
+        <p>Item Description</p>
+        <textarea rows="10" name="description" id="description" class="form-control" placeholder="Please provide as many details as you can about the item.,eg Black leather wallet,Playboy Brand " ></textarea>
+        <br/>
+
+        <p>How do you want people to contact you?</p>
         <textarea name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
-        <div align="center">
-            <button type="submit" class="btn btn-primary">Add Item</button>
+        <div align="center" style="margin: 2%;">
+            <button type="submit" class="btn text-light hover-effect" style="background-color: rgb(46, 58, 77);">Add Item</button>
           </div>
         </form>
   </div>
