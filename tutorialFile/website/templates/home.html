@@ -16,20 +16,19 @@ Home
 
 <div class="row">
 
-<div class="border-bottom col-md-6 " style="padding-top: 0%;">
+<div class="border-bottom col-md-6 col-sm-12" style="padding-top: 0%;">
 
-    <div  class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
-        <h3 align="center" style="">Lost Item</h3>
+    <div  class="rounded-top text-light fade-in " style="padding: 5px; margin-top: 2%; background-color: rgb(46, 58, 77); margin-bottom: 2%;" >
+        <h3 align="center" class="itemtitle">Lost Item</h3>
     </div>
 
 
     <ul class="list-group list-group-flush fade-in" id="lost-items">
         {% for x in lostitem %}
-        <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
+        <div class="lost-item-container hover-effect rounded border border-dark text-center" style="margin-bottom: 1%;">
+            <h5><b> {{x.name}} </b></h5>
             <li class="list-group-item">
-                <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
-                <br>
-                <b>Item: </b> {{x.name}}  
+                <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;"> 
                 <br>
                 <b>Item Description:</b>
                 <br>  
@@ -38,7 +37,7 @@ Home
                 <b>Contact Info:</b>
                 <br>
                 {{x.contact}}
-                <div class="text-muted" style="font-size: xx-small;">
+                <div class="text-muted" style="font-size: small;">
                     Date Reported: {{ x.date_lost}}
                 </div>
             </li>
@@ -50,20 +49,19 @@ Home
 
 
 
-<div class="border-bottom col-md-6" style="padding-top: 0%;">
+<div class="border-bottom col-md-6 col-sm-12" style="padding-top: 0%;">
 
-    <div  class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
-        <h3 align="center" style="">Found Item</h3>
+    <div  class="rounded-top text-light fade-in itemtitle" style="padding: 5px; margin-top: 2%; background-color: rgb(46, 58, 77); margin-bottom: 2%;" >
+        <h3 align="center" class="itemtitle">Found Item</h3>
     </div>
 
 
-    <ul class="list-group list-group-flush fade-in" id="found-items">
+    <ul class="list-group list-group-flush fade-in text-center" id="found-items">
         {% for y in founditem %}
         <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
+            <h5><b> {{y.name}} </b></h5>
         <li class="list-group-item">
-            <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
-            <br>
-            <b>Item:</b> {{y.name}}  
+            <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;"> 
             <br>
             <b>Item Description:</b>   
             <br>
@@ -72,7 +70,7 @@ Home
             <b>Contact Info:</b>
             <br>
             {{ y.contact}}
-            <div class="text-muted" style="font-size: xx-small;">
+            <div class="text-muted" style="font-size: small;">
                 Date Reported: {{ y.date_found}}
             </div>
         </li>

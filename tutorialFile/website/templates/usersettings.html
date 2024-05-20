@@ -4,8 +4,8 @@
   
   <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
   
-    <div  class="">
-        <h1 align="center" style="">⚙️ User Setting </h1>
+    <div >
+        <h1 align="center" class="">⚙️ User Setting </h1>
     </div>
   </div>
   
@@ -20,7 +20,7 @@
         <!--Grid for Lost Item-->
   
         <div class="  ">
-          <h4  class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Lost Items</h4>
+          <h4  class="border border-dark rounded-top text-light fade-in title" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 2%; margin-top: 2%;">My Lost Items</h4>
         </div>
   
   
@@ -28,10 +28,9 @@
           <ul class="list-group list-group-flush" id="notes">
             {% for lostitem in user.lost_item %}
             <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
-            <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
+            <h5 class="text-dark itemtitle" style=" padding: 5px; margin-bottom: 0%; background-color: rgb(245, 245, 245);"><b>{{lostitem.name}}</b></h5> <!-- place lostitem,data here-->
+            <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
             <li class="list-group-item">
-            <b>Item: </b> {{lostitem.name}}  <!-- place lostitem,data here-->
-            </br>
             <b>Item Description:</b>
             </br>  
               {{ lostitem.description }}
@@ -44,7 +43,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
   
-            <div class="text-muted" style="font-size: xx-small;">
+            <div class="text-muted" style="font-size: small;">
             Date Reported: {{ lostitem.date_lost}}
             </div>
             </li>
@@ -63,17 +62,16 @@
         <!--Grid for Found Item-->
   
         <div>
-          <h4 class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Found Items</h4>
+          <h4 class="border border-dark rounded-top text-light fade-in title" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 2%; margin-top: 2%;">My Found Items</h4>
         </div>
   
         <div class="fade-in" style="padding-top: 0%;">
           <ul class="list-group list-group-flush" id="notes">
             {% for founditem in user.found_item %}
             <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
-            <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
+            <h5 class="text-dark itemtitle" style=" padding: 5px; margin-bottom: 0%; background-color: rgb(245, 245, 245);"><b>{{founditem.name}}</b></h5> <!-- place lostitem,data here-->
+            <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
             <li class="list-group-item">
-              <b>Item:</b> {{founditem.name}}  <!-- place lostitem,data here-->
-            </br>
             <b>Item Description:</b>   
             </br>
               {{ founditem.description }}
@@ -87,7 +85,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
   
-          <div class="text-muted" style="font-size: xx-small;">
+          <div class="text-muted" style="font-size: small;">
           Date Reported: {{ founditem.date_found}}
           </div>
             </li>
