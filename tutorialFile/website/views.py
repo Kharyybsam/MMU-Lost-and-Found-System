@@ -12,6 +12,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():   #this function wil run whenever we go to "/"
+    
     alllostitem = Lostitem.query.all()
     allfounditem = Founditem.query.all()
     return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem)
