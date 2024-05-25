@@ -5,7 +5,7 @@
   <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
   
     <div  class="">
-        <h1 align="center" style="">⚙️ User Setting </h1>
+        <h1 align="center" style="">⚙ User Setting </h1>
     </div>
   </div>
   
@@ -35,6 +35,10 @@
             <b>Item Description:</b>
             </br>  
               {{ lostitem.description }}
+            </br>
+            <b>Location:</b>
+            </br>
+              {{ lostitem.location }}
             </br>
             <b>Contact Info:</b>
             </br>
@@ -77,10 +81,15 @@
             <b>Item Description:</b>   
             </br>
               {{ founditem.description }}
-          </br>
-          <b>Contact Info:</b>
             </br>
-            {{ founditem.contact}}
+            <b>Location:</b>
+            </br>
+            {{ founditem.location }}
+            </br>
+            <!-- {{ founditem.location}} -->
+            <b>Contact Info:</b>
+            </br>
+            {{ founditem.contact }}
 
   
             <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
@@ -114,5 +123,4 @@
   
   
   
-  {% endblock %}
-  
+{% endblock %}

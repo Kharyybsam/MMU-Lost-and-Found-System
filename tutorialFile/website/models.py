@@ -20,6 +20,7 @@ class Lostitem(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_file = db.Column(db.Text, nullable=False)
     contact = db.Column(db.Text,nullable=False)
+    location = db.Column(db.String(1000), nullable=False)
 
 class Founditem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,3 +30,4 @@ class Founditem(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_file = db.Column(db.Text, nullable=False)
     contact = db.Column(db.Text,nullable=False)
+    location = db.Column(db.String(1000), nullable=False)
