@@ -8,9 +8,11 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
+    contactinfo = db.Column(db.Text, nullable=False)
     first_name = db.Column(db.String(150))
     lost_item = db.relationship('Lostitem')
     found_item = db.relationship('Founditem')
+
 
 class Lostitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,7 +21,6 @@ class Lostitem(db.Model):
     date_lost = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_file = db.Column(db.Text, nullable=False)
-    contact = db.Column(db.Text,nullable=False)
 
 class Founditem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,4 +29,3 @@ class Founditem(db.Model):
     date_found = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_file = db.Column(db.Text, nullable=False)
-    contact = db.Column(db.Text,nullable=False)
