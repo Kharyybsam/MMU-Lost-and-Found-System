@@ -1,120 +1,3 @@
-<<<<<<< HEAD:website/templates/usersettings.html
-{% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
-  %}
-  
-  
-  <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
-  
-    <div >
-        <h1 align="center" class="">⚙️ User Setting </h1>
-    </div>
-  </div>
-  
-  <div class="container-fluid rounded-bottom border text-center " style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
-  <!--Grid-->
-  
-  
-  
-    <div class="row">
-  
-      <div class="col-md-6 col-xs-12" style="padding-bottom: 2%;">
-        <!--Grid for Lost Item-->
-  
-        <div class="  ">
-          <h4  class="border border-dark rounded-top text-light fade-in title" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 2%; margin-top: 2%;">My Lost Items</h4>
-        </div>
-  
-  
-        <div class="fade-in" style=" margin-top: 0%;">
-          <ul class="list-group list-group-flush" id="notes">
-            {% for lostitem in user.lost_item %}
-            <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
-            <h5 class="text-dark itemtitle" style=" padding: 5px; margin-bottom: 0%; background-color: rgb(245, 245, 245);"><b>{{lostitem.name}}</b></h5> <!-- place lostitem,data here-->
-            <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
-            <li class="list-group-item">
-            <b>Item Description:</b>
-            </br>  
-              {{ lostitem.description }}
-            </br>
-            <b>Contact Info:</b>
-            </br>
-              {{lostitem.contact}}
-  
-            <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-              <span aria-hidden="true">&times;</span>
-            </button>
-  
-            <div class="text-muted" style="font-size: small;">
-            Date Reported: {{ lostitem.date_lost}}
-            </div>
-            </li>
-            </div>
-            
-            {% endfor %}
-          </ul>
-        </div>
-  
-    
-      </div>
-  
-  
-  
-      <div class="col-md-6 col-xs-12 col-sm-12 ">
-        <!--Grid for Found Item-->
-  
-        <div>
-          <h4 class="border border-dark rounded-top text-light fade-in title" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 2%; margin-top: 2%;">My Found Items</h4>
-        </div>
-  
-        <div class="fade-in" style="padding-top: 0%;">
-          <ul class="list-group list-group-flush" id="notes">
-            {% for founditem in user.found_item %}
-            <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
-            <h5 class="text-dark itemtitle" style=" padding: 5px; margin-bottom: 0%; background-color: rgb(245, 245, 245);"><b>{{founditem.name}}</b></h5> <!-- place lostitem,data here-->
-            <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
-            <li class="list-group-item">
-            <b>Item Description:</b>   
-            </br>
-              {{ founditem.description }}
-          </br>
-          <b>Contact Info:</b>
-            </br>
-            {{ founditem.contact}}
-
-  
-            <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-              <span aria-hidden="true">&times;</span>
-            </button>
-  
-          <div class="text-muted" style="font-size: small;">
-          Date Reported: {{ founditem.date_found}}
-          </div>
-            </li>
-            </div>
-            
-            {% endfor %}
-          </ul>
-        </div>
-  
-  
-      </div>
-  
-  
-    </div>
-  
-    <div>
-      <a href="/logout" id="logout" 
-      class="btn text-light hover-effect" role="button" 
-      style="font-weight: bold; margin-bottom: 2%; background-color: rgb(46, 58, 77); margin-top: 2%;">
-      Logout</a>
-    </div>
-  
-  </div>
-  
-  
-  
-  {% endblock %}
-=======
 {% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
   %}
   
@@ -126,14 +9,25 @@
     </div>
   </div>
   
-  <div class="container-fluid rounded-bottom border text-center " style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+
+  <div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
   <!--Grid-->
+
+  <!--Place other profile Info Here-->
   
-  
-  
-    <div class="row">
-  
-      <div class="col-md-6 col-xs-12" style="padding-bottom: 2%;">
+  <!--No profile info past here-->
+    <div class="fade-in" style="margin-top: 1%;">
+    <button class="collapsible" onclick="toggleContent(this)"
+    style="width: 100%;"
+    >
+      <b>Your Report</b>
+      <span class="arrow down"></span>
+    </button>
+    <div class="content rounded" >
+    <div class="row" >
+       
+
+      <div class="col-md-6 col-xs-12 " style="padding-bottom: 2%;">
         <!--Grid for Lost Item-->
   
         <div class="  ">
@@ -144,9 +38,11 @@
         <div class="fade-in" style=" margin-top: 0%;">
           <ul class="list-group list-group-flush" id="notes">
             {% for lostitem in user.lost_item %}
-            <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
-            <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
-            <li class="list-group-item">
+            <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
+            <div class="row" >
+            <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+            <li class="list-group-item col-md-5">
+
             <b>Item: </b> {{lostitem.name}}  <!-- place lostitem,data here-->
             </br>
             <b>Item Description:</b>
@@ -154,15 +50,22 @@
               {{ lostitem.description }}
             </br>
   
-            <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-              <span aria-hidden="true">&times;</span>
-            </button>
-  
             <div class="text-muted" style="font-size: xx-small;">
             Date Reported: {{ lostitem.date_lost}}
             </div>
             </li>
+           <!--Button for directing to the next page. Only edit content inside div-->
+          <div class="col-md-1 " style="margin-top: 6%;">
+            <button class="button-check" style="padding: 40%;">Check</button>
+          </div>
+          <!--Button to delete content-->
+          <div class="col-md-1" style="padding-left: 12%;">
+              <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
             </div>
+          </div>
             
             {% endfor %}
           </ul>
@@ -173,57 +76,57 @@
   
   
   
-      <div class="col-md-6 col-xs-12 col-sm-12 ">
+      <div class="col-md-6 col-xs-12 ">
         <!--Grid for Found Item-->
   
         <div>
           <h4 class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Found Items</h4>
         </div>
   
-        <div class="fade-in" style="padding-top: 0%;">
+        <div class="fade-in" style="margin-top: 0%;">
           <ul class="list-group list-group-flush" id="notes">
             {% for founditem in user.found_item %}
-            <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
-            <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: 300px;">
-            <li class="list-group-item">
-              <b>Item:</b> {{founditem.name}}  <!-- place lostitem,data here-->
+            <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
+            <div class="row">
+            <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+            <li class="list-group-item col-md-5">
+            <b>Item:</b> {{founditem.name}}  <!-- place lostitem,data here-->
             </br>
             <b>Item Description:</b>   
             </br>
-              {{ founditem.description }}
-
-  
-            <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-              <span aria-hidden="true">&times;</span>
-            </button>
-  
+            {{ founditem.description }}
+           </br>
           <div class="text-muted" style="font-size: xx-small;">
           Date Reported: {{ founditem.date_found}}
           </div>
-            </li>
-            </div>
-            
+          </li>
+          <!--Button for directing to the next page. Only edit content inside div-->
+          <div class="col-md-1" style="margin-top: 6%;">
+            <button class="button-check" style="padding: 40%;">Check</button>
+          </div>
+          <!--Button to delete content-->
+          <div class="col-md-1" style="padding-left: 12%;">
+            <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          </div>
+          </div>
             {% endfor %}
           </ul>
         </div>
-  
-  
       </div>
   
   
+      </div>
     </div>
   
-    <div>
-      <a href="/logout" id="logout" 
-      class="btn text-light hover-effect" role="button" 
-      style="font-weight: bold; margin-bottom: 2%; background-color: rgb(46, 58, 77); margin-top: 2%;">
-      Logout</a>
-    </div>
   
+    </div>
+  </div>
   </div>
   
   
   
   {% endblock %}
->>>>>>> origin/main:tutorialFile/website/templates/usersettings.html
   

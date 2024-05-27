@@ -1,50 +1,3 @@
-<<<<<<< HEAD:website/templates/reportlostitem.html
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-  %}
-
-  <div class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
-
-    <div  class="">
-      <h1 align="center" style="">Report Lost Item </h1>
-    </div>
-  </div>
-
-<div class="container-fluid rounded-bottom border fade-in" style="background-color: white; margin-bottom: 2%;">
-
-<div>
-<form method="POST" enctype="multipart/form-data">
-<label for="pic">Upload an image:</label>
-<br/>
-<input type="file" name="pic" />
-<br/><br>
-
-<p>What Item did you lose?</p>
-  <textarea rows="1" name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.."></textarea>
-  <br/>
-
-<p>Description</p>
-<textarea rows="10" name="description" id="description" class="form-control" placeholder="How,When,Where did you lost your item?"></textarea>
-<br/>
-
-<p>How do you want people to contact you?</p>
-<textarea rows="2" name="contact" id="contact" class="form-control" placeholder="Your phone number,email,Discord username, etc.."></textarea>
-  <div align="center" style="margin: 2%;">
-    <button type="submit" class="btn text-light hover-effect" style="background-color: rgb(46, 58, 77);">Add Item</button>
-  </div>
-</form>
-</div>
-
-<div class="text-muted" style="font-size: small;">
-  <h6>Remember The 3W when Reporting!</h6>
-  <p>1. 🤔 What? Any details that is special to your item? Say it!</p>
-  <p>2. ⏲️ When? At what time do you realise it's gone.</p>
-  <p>3. 🤷 Where? Try to remember and state where you last seen the item.</p>
-
-</div>
-
-</div>
-{% endblock %}
-=======
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
   %}
 
@@ -89,4 +42,3 @@
 
 </div>
 {% endblock %}
->>>>>>> origin/main:tutorialFile/website/templates/reportlostitem.html
