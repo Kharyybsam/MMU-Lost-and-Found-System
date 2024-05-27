@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        font-size: larger;
+    }
+
+    p{
+      font-family: 'Roboto', sans-serif;
+    }
+
+    div {
+      font-family: 'Roboto', sans-serif;
+
+    }
+        .fade-in {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .fade-in.active {
+        opacity: 1;
+    }
+
+    .hover-effect:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .toggle {
+        cursor: pointer;
+    }
+    .toggle::after {
+        content: "\25BC"; /* Unicode for down arrow */
+        display: inline-block;
+        margin-left: 5px;
+    }
+    .expanded::after {
+        content: "\25B2"; /* Unicode for up arrow */
+    }
+    .title{
+      font-size: xx-large;
+      font-weight: bold;
+    }
+    .itemtitle{
+      font-size: x-large;
+      font-weight: bold;
+    }
+    .collapsible {
+            background-color: white;
+            color:black;
+            cursor: pointer;
+            padding: 10px;
+            width: 200px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible:hover {
+            background-color: lightgray;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transition: transform 0.3s;
+        }
+
+        .arrow.down {
+            transform: rotate(45deg);
+        }
+
+        .arrow.up {
+            transform: rotate(-135deg);
+        }
+        .button-check {
+          background-color: rgb(46, 58, 77);
+          color: #f1f1f1;
+
+        }
+  </style>
+
+
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" 
+    rel="stylesheet">
+
+
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <body style="background-color: rgba(46, 58, 77, 0.2); ">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(46, 58, 77);">
+  <div class="collapse navbar-collapse" id="navbar" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
+    <div class="navbar-nav">
+      {% if user.is_authenticated %}
+      <a class="nav-item navbar-brand" id="home" href="/">🏠Home</a>
+      <a class="nav-item navbar-brand" id="reportitem" href="/reportitem">🗒️Report Item</a>
+      <a class="nav-item navbar-brand" id="user-settings" href="/user-settings">👤User</a>
+      {% else %}
+      <a class="nav-item navbar-brand ml-auto" id="login" href="/login">Login</a>
+      <a class="nav-item navbar-brand" id="signUp" href="/sign-up">Sign Up</a>
+      {% endif %}
+    </div>
+    <div class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+      <a class="nav-item navbar-brand hover-effect" id="logout" href="/logout">🚪Logout</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+    <!--<div style="padding-top: 5px; margin: 0%; background-color: red;"></div> -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+    <div class="container">{% block content %} {% endblock %}</div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // JavaScript to add fade-in animation
+      document.addEventListener("DOMContentLoaded", function() {
+          var elements = document.querySelectorAll('.fade-in');
+          for (var i = 0; i < elements.length; i++) {
+              elements[i].classList.add('active');
+          }
+      });
+  </script>
+<script>
+  //javascript for the faq (MIGHT BE REPLACED)
+  document.addEventListener("DOMContentLoaded", function() {
+      var toggleElements = document.querySelectorAll('.fade-in .toggle');
+      toggleElements.forEach(function(toggle) {
+          toggle.addEventListener('click', function() {
+              var content = this.nextElementSibling;
+              content.classList.toggle('expanded');
+              content.style.display = (content.style.display === 'none') ? 'block' : 'none';
+          });
+      });
+  });
+  </script>
+<script>
+  //javascript for collapsable button
+  function toggleContent(button) {
+      var content = button.nextElementSibling;
+      var arrow = button.querySelector('.arrow');
+      if (content.style.display === "block") {
+          content.style.display = "none";
+          arrow.classList.remove('up');
+          arrow.classList.add('down');
+      } else {
+          content.style.display = "block";
+          arrow.classList.remove('down');
+          arrow.classList.add('up');
+      }
+  }
+</script>
+
+
+{% block javascript %}
+    <script type="text/javascript">
+      function deleteNote(noteId) {
+  fetch("/delete-note", {
+    method: "POST",
+    body: JSON.stringify({ noteId: noteId }),
+  }).then((_res) => {
+    window.location.href = "/";
+  });
+  }
+  function deleteLostItem(lostitemid) {
+  fetch("/delete-lostitem", {
+    method: "POST",
+    body: JSON.stringify({ lostitemid: lostitemid }),
+  }).then((_res) => {
+    window.location.href = "/user-settings"; ///user-settings
+  });
+}
+function deleteFoundItem(founditemid) {
+  fetch("/delete-founditem", {
+    method: "POST",
+    body: JSON.stringify({ founditemid: founditemid }),
+  }).then((_res) => {
+    window.location.href = "/user-settings"; ///user-settings
+  });
+}
+</script>
+{% endblock %}
+  </body>
+</html>
