@@ -5,7 +5,7 @@
   <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
   
     <div  class="">
-        <h1 align="center" style="">⚙️ User Setting </h1>
+        <h1 align="center" style="">⚙️ User Settings </h1>
     </div>
   </div>
   
@@ -56,7 +56,7 @@
             </li>
            <!--Button for directing to the next page. Only edit content inside div-->
           <div class="col-md-1 " style="margin-top: 6%;">
-            <button class="button-check" style="padding: 40%;">Check</button>
+            <button class="button-check" style="padding: 40%;">View Item</button>
           </div>
           <!--Button to delete content-->
           <div class="col-md-1" style="padding-left: 12%;">
@@ -102,7 +102,7 @@
           </li>
           <!--Button for directing to the next page. Only edit content inside div-->
           <div class="col-md-1" style="margin-top: 6%;">
-            <button class="button-check" style="padding: 40%;">Check</button>
+            <button class="button-check" style="padding: 40%;">View Item</button>
           </div>
           <!--Button to delete content-->
           <div class="col-md-1" style="padding-left: 12%;">
@@ -123,6 +123,56 @@
   
   
     </div>
+    <form method="POST">
+
+    <h3>View or change your details.</h3>
+    </br>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        value="{{ email }}"
+        name="email"
+        placeholder="Enter email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        value="{{ first_name }}"
+        id="firstName"
+        name="firstName"
+        placeholder="Enter first name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="contactinfo">How do you want people to contact you?</label>
+      <input
+        type="text"
+        class="form-control"
+        value="{{ contactinfo }}"
+        id="contactinfo"
+        name="contactinfo"
+        placeholder="Your phone number,email,Discord username, etc.."
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Change Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="New password Here..."
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
   </div>
   </div>
   
