@@ -15,6 +15,3 @@ function deleteItem(lostitemid) {
     window.location.href = "/user-settings"; ///user-settings
   });
 }
-function yasuo(){
-  print('thisworks')
-}
