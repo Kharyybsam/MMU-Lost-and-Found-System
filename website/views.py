@@ -112,5 +112,12 @@ def usersettings():
         db.session.commit()
     return render_template("usersettings.html",user=current_user,email=current_user.email,first_name=current_user.first_name,contactinfo=current_user.contactinfo)
 
+@views.route('/lostitem/<int:lostitem_id>', methods=['GET', 'POST'])
+def display_lostitem(lostitem_id):
+    # quiz = Quiz.query.get_or_404(quiz_id)
+    return render_template('displaylostitem.html',user=current_user)
 
-
+@views.route('/founditem/<int:founditem_id>', methods=['GET', 'POST'])
+def display_founditem(founditem_id):
+    # quiz = Quiz.query.get_or_404(quiz_id)
+    return render_template('displayfounditem.html',user=current_user)
