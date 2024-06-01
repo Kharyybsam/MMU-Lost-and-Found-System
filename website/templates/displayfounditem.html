@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
     %}
-    <h1>gawk gawk 2</h1>
-
+    <div>
+        <h1>{{ thisfounditem.name }}</h1>
+        <p>{{ thisfounditem.description }}</p>
+        Date Reported: {{ thisfounditem.date_lost}} 
+        <img src="data:image/png;base64,{{thisfounditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
+    </div>
 {% endblock %}
