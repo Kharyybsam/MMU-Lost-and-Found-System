@@ -1,5 +1,11 @@
 {% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
     %}
-    <h1>gawk gawk</h1>
+    <div>
+        <h1>{{ thislostitem.name }}</h1>
+        <p>{{ thislostitem.description }}</p>
+        Date Reported: {{ thislostitem.date_lost}} 
+        <img src="data:image/png;base64,{{thislostitem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
+    </div>
+    
 
 {% endblock %}

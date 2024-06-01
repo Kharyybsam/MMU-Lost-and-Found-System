@@ -114,10 +114,10 @@ def usersettings():
 
 @views.route('/lostitem/<int:lostitem_id>', methods=['GET', 'POST'])
 def display_lostitem(lostitem_id):
-    # quiz = Quiz.query.get_or_404(quiz_id)
-    return render_template('displaylostitem.html',user=current_user)
+    thislostitem = Lostitem.query.get(lostitem_id)
+    return render_template('displaylostitem.html',user=current_user,thislostitem=thislostitem)
 
 @views.route('/founditem/<int:founditem_id>', methods=['GET', 'POST'])
 def display_founditem(founditem_id):
-    # quiz = Quiz.query.get_or_404(quiz_id)
-    return render_template('displayfounditem.html',user=current_user)
+    thisfounditem = Founditem.query.get(founditem_id)
+    return render_template('displayfounditem.html',user=current_user,thisfounditem=thisfounditem)
