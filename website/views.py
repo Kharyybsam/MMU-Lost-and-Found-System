@@ -58,6 +58,7 @@ def reportfounditempage():
         picture = request.files['pic']
         itemname = request.form.get('name')
         itemdescription = request.form.get('description')
+        location = request.form.get('location')
         imagebase64 = picture.read()
         imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
@@ -65,7 +66,7 @@ def reportfounditempage():
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
         else:
-            new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64)  #providing the schema for the note 
+            new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_founditems) #adding the note to the database 
             db.session.commit()
             flash('Found Item added!', category='success')
@@ -79,6 +80,7 @@ def reportlostitempage():
         picture = request.files['pic']
         itemname = request.form.get('name')#Gets the note from the HTML 
         itemdescription = request.form.get('description')
+        location = request.form.get('location')
         imagebase64 = picture.read()
         imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
@@ -86,7 +88,7 @@ def reportlostitempage():
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
         else:
-            new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64)  #providing the schema for the note 
+            new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_lostitems) #what if i assign a homeid?
             db.session.commit()
             flash('Lost Item added!', category='success')      
