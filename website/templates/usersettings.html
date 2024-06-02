@@ -49,6 +49,10 @@
             </br>  
               {{ lostitem.description }}
             </br>
+            <b>Location:</b>
+            </br>
+            {{ lostitem.location }}
+            </br>
   
             <div class="text-muted" style="font-size: xx-small;">
             Date Reported: {{ lostitem.date_lost}}
@@ -96,6 +100,10 @@
             </br>
             {{ founditem.description }}
            </br>
+           <b>Location:</b> 
+           </br>
+           {{founditem.location}} <!-- place lostitem,data here-->
+          </br>
           <div class="text-muted" style="font-size: xx-small;">
           Date Reported: {{ founditem.date_found}}
           </div>
