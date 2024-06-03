@@ -11,6 +11,12 @@ import json
 
 views = Blueprint('views', __name__)
 
+#allow file extensions
+Allowed_File_Extensions = {'png', 'jpeg', 'jpg'}
+
+def allow_file(filename):
+    return '.' in filename and filename.rsplit('.',1)[1].lower() in Allowed_File_Extensions
+
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():   #this function wil run whenever we go to "/"
@@ -58,14 +64,17 @@ def reportfounditempage():
         picture = request.files['pic']
         itemname = request.form.get('name')
         itemdescription = request.form.get('description')
+        location = request.form.get('location')
         imagebase64 = picture.read()
         imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Item is too short!', category='error')
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
+        elif not allow_file(picture.filename):
+            flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:
-            new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64)  #providing the schema for the note 
+            new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_founditems) #adding the note to the database 
             db.session.commit()
             flash('Found Item added!', category='success')
@@ -79,14 +88,17 @@ def reportlostitempage():
         picture = request.files['pic']
         itemname = request.form.get('name')#Gets the note from the HTML 
         itemdescription = request.form.get('description')
+        location = request.form.get('location')
         imagebase64 = picture.read()
         imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Item is too short!', category='error') 
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
+        elif not allow_file(picture.name):
+            flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:
-            new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64)  #providing the schema for the note 
+            new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_lostitems) #what if i assign a homeid?
             db.session.commit()
             flash('Lost Item added!', category='success')      
@@ -112,5 +124,12 @@ def usersettings():
         db.session.commit()
     return render_template("usersettings.html",user=current_user,email=current_user.email,first_name=current_user.first_name,contactinfo=current_user.contactinfo)
 
+@views.route('/lostitem/<int:lostitem_id>', methods=['GET', 'POST'])
+def display_lostitem(lostitem_id):
+    thislostitem = Lostitem.query.get(lostitem_id)
+    return render_template('displaylostitem.html',user=current_user,thislostitem=thislostitem)
 
-
+@views.route('/founditem/<int:founditem_id>', methods=['GET', 'POST'])
+def display_founditem(founditem_id):
+    thisfounditem = Founditem.query.get(founditem_id)
+    return render_template('displayfounditem.html',user=current_user,thisfounditem=thisfounditem)

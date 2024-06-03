@@ -21,6 +21,7 @@ class Lostitem(db.Model):
     date_lost = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_file = db.Column(db.Text, nullable=False)
+    location = db.Column(db.String(1000), nullable=False)
 
 class Founditem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,3 +30,4 @@ class Founditem(db.Model):
     date_found = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_file = db.Column(db.Text, nullable=False)
+    location = db.Column(db.String(1000), nullable=False)
