@@ -2,7 +2,9 @@ from flask import Blueprint, render_template, request, flash, jsonify,redirect,u
 from flask_login import login_required, current_user
 from .models import Lostitem
 from .models import Founditem
+from .models import User
 from os import path
+from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 import base64
 import json
@@ -91,10 +93,24 @@ def reportlostitempage():
             return redirect(url_for('views.usersettings'))
     return render_template("reportlostitem.html",user=current_user)
 
-@views.route('/user-settings')
+@views.route('/user-settings',methods=['GET','POST'])
 @login_required
 def usersettings():
-    return render_template("usersettings.html",user=current_user)
+    if request.method == 'POST':
+        email = request.form.get('email')
+        first_name = request.form.get('firstName')
+        password = request.form.get('password')
+        contactinfo = request.form.get('contactinfo')
+        user = User.query.filter_by(email=email).first()
+        print(user.email)
+        user.email = email
+        user.first_name = first_name
+        if password != '':
+            user.password = generate_password_hash(password, method='pbkdf2:sha256')
+        user.contactinfo = contactinfo
+        flash('Your information has been saved!',category='info')
+        db.session.commit()
+    return render_template("usersettings.html",user=current_user,email=current_user.email,first_name=current_user.first_name,contactinfo=current_user.contactinfo)
 
 
 
