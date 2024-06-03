@@ -2,29 +2,47 @@
     %}
 
 
-    <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
-  
-        <div  class="">
-            <h1 align="center" style="">{{ thislostitem.name }}</h1>
+    <div style="margin: 4%;">
+        <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+      
+            <div  class="">
+                <h1 align="center" style="">{{ thislostitem.name }}</h1>
+            </div>
         </div>
-      </div>
-
-
-    <div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
-        
-
-
-        <img src="data:image/png;base64,{{thislostitem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
-        <b>Date Lost: {{ thislostitem.date_lost}}</b>      
-        <br>
-        <b>Location:</b>{{ thislostitem.location  }}      
-        </br>
-        <b>contact:</b>{{ thislostitem.contactinfo  }}      
-        </br>
-        <b>Item Description:</b>
-        </br>
-        <p>{{ thislostitem.description }}</p>  
-    </div>
     
-
+    
+        
+        <div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+            
+    
+            <br>
+            <div><img src="data:image/png;base64,{{thislostitem.image_file.decode('utf-8')}}" class="img-fluid border border-muted rounded" style="width: 80%; height: auto;"></div>
+            
+            <div class="display">
+                <br>
+                <div class=" border-muted border-bottom">
+                    <h5><b>📅Date Found:</b> {{ thislostitem.date_lost  }} </h5>      
+                    <br>
+                </div>
+                <br>
+                <div class=" border-muted border-bottom">
+                    <h5><b>📍Location:</b> {{ thislostitem.location  }} </h5>
+                    <br>
+                </div>
+                <br>
+                <div class=" border-muted border-bottom">
+                    <h5><b>📱contact:</b> {{ thislostitem.contactinfo  }}</h5>   
+                    <br>
+                </div>
+                <br>
+                <div>
+                    <h5><b>🖹Item Description:</b></h5>
+                    </br>
+                    <p class="description">{{ thislostitem.description }}</p>
+                </div>
+    
+    
+            </div>  
+        </div>
+    </div>  
 {% endblock %}
