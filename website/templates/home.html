@@ -12,92 +12,69 @@ Home
     </div>
   </div>
 
+<div class="container-fluid" style="background-color: white;">
 
-<div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
-    <div class="row" >
-       
+<div class="row">
 
-        <div class="col-md-6 col-xs-12 " style="padding-bottom: 2%;">
-          <!--Grid for Lost Item-->
-    
-          <div class="  ">
-            <h4  class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Lost Items</h4>
-          </div>
-    
-    
-          <div class="fade-in" style=" margin-top: 0%;">
-            <ul class="list-group list-group-flush" id="notes">
-              {% for x in lostitem %}
-              <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
-              <div class="row" >
-              <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
-              <li class="list-group-item col-md-5">
-  
-              <b>Item: </b> {{x.name}}  <!-- place lostitem,data here-->
-              </br>  
-              <b>Location:</b>
-              </br>
-              {{ x.location }}
-              </br>
-    
-              <div class="text-muted" style="font-size: xx-small;">
-                Date Reported: {{ x.date_lost}} 
-              </div>
-              </li>
-             <!--Button for directing to the next page. Only edit content inside div-->
-            <div class="col-md-2 " style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
-              <button class="button-check" onclick="window.location.href='/lostitem/{{x.id}}';">View Item</button>
-            </div>
-            <!--Button to delete content(FUTURE/NO)-->
-              </div>
-            </div>
-              
-              {% endfor %}
-            </ul>
-          </div>
-    
-      
-        </div>
-    
-    
-    
-        <div class="col-md-6 col-xs-12 ">
-          <!--Grid for Found Item-->
-    
-          <div>
-            <h4 class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Found Items</h4>
-          </div>
-    
-          <div class="fade-in" style="margin-top: 0%;">
-            <ul class="list-group list-group-flush" id="notes">
-                {% for y in founditem %}
-              <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
-              <div class="row">
-              <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
-              <li class="list-group-item col-md-5">
-              <b>Item:</b> {{y.name}}  <!-- place lostitem,data here-->
-             </br>
-             <b>Location:</b> 
-             </br>
-             {{y.location}} <!-- place lostitem,data here-->
-            </br>
-            <div class="text-muted" style="font-size: xx-small;">
-            Date Reported: {{ y.date_found}}
-            </div>
+<div class="border-bottom col-md-6 col-sm-12" style="padding-top: 0%;">
+
+    <div  class="rounded-top text-light fade-in " style="padding: 5px; margin-top: 2%; background-color: rgb(46, 58, 77); margin-bottom: 2%;" >
+        <h3 align="center" class="itemtitle">Lost Item</h3>
+    </div>
+
+
+    <ul class="list-group list-group-flush fade-in" id="lost-items">
+        {% for x in lostitem %}
+        <div class="lost-item-container hover-effect rounded border border-dark text-center" style="margin-bottom: 1%;">
+            <h5><b> {{x.name}} </b></h5>
+            <li class="list-group-item">
+                <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;"> 
+                <br>
+                <b>Item Description:</b>
+                <br>  
+                {{ x.description }}
+                <br>
+
+                <div class="text-muted" style="font-size: xx-small;">
+                    Date Reported: {{ x.date_lost}} 
+                </div>
+                
             </li>
-            <!--Button for directing to the next page. Only edit content inside div-->
-            <div class="col-md-2" style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
-              <button class="button-check" onclick="window.location.href='/founditem/{{y.id}}';">View Item</button>
-            </div>
-            <!--Button to delete content(FUTURE/NO)-->
-            </div>
-            </div>
-              {% endfor %}
-            </ul>
-          </div>
+            
         </div>
-    
-    
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+<div class="border-bottom col-md-6 col-sm-12" style="padding-top: 0%;">
+
+    <div  class="rounded-top text-light fade-in itemtitle" style="padding: 5px; margin-top: 2%; background-color: rgb(46, 58, 77); margin-bottom: 2%;" >
+        <h3 align="center" class="itemtitle">Found Item</h3>
+    </div>
+
+
+    <ul class="list-group list-group-flush fade-in text-center" id="found-items">
+        {% for y in founditem %}
+        <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%;">
+            <h5><b> {{y.name}} </b></h5>
+        <li class="list-group-item">
+            <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;"> 
+            <br>
+            <b>Item Description:</b>   
+            <br>
+            {{ y.description }}
+            <br>
+            <br>
+            <div class="text-muted" style="font-size: xx-small;">
+                Date Reported: {{ y.date_found}}
+            </div>
+        </li>
         </div>
+        {% endfor %}
+    </ul>
+</div>
+</div>
 </div>
 {% endblock %}
