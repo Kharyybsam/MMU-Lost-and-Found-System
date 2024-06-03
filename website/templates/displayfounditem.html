@@ -1,9 +1,28 @@
 {% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
     %}
-    <div>
-        <h1>{{ thisfounditem.name }}</h1>
-        <p>{{ thisfounditem.description }}</p>
-        Date Reported: {{ thisfounditem.date_lost}} 
+
+    <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+  
+        <div  class="">
+            <h1 align="center" style="">{{ thisfounditem.name }}</h1>
+        </div>
+      </div>
+
+
+    <div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
+        
+
+
         <img src="data:image/png;base64,{{thisfounditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
+        <b>Date Founded: </b>{{ thisfounditem.date_found  }} 
+        <br>
+        <b>Location:</b>{{ thisfounditem.location  }}      
+        </br>
+        <b>contact:</b>{{ thisfounditem.contactinfo  }}      
+        </br>
+        <b>Item Description:</b>
+        </br>
+        <p>{{ thisfounditem.description }}</p>  
     </div>
+    
 {% endblock %}
