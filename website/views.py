@@ -11,6 +11,12 @@ import json
 
 views = Blueprint('views', __name__)
 
+#allow file extensions
+Allowed_File_Extensions = {'png', 'jpeg', 'jpg'}
+
+def allow_file(filename):
+    return '.' in filename and filename.rsplit('.',1)[1].lower() in Allowed_File_Extensions
+
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():   #this function wil run whenever we go to "/"
@@ -65,6 +71,8 @@ def reportfounditempage():
             flash('Item is too short!', category='error')
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
+        elif not allow_file(picture.filename):
+            flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:
             new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_founditems) #adding the note to the database 
@@ -87,6 +95,8 @@ def reportlostitempage():
             flash('Item is too short!', category='error') 
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
+        elif not allow_file(picture.name):
+            flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:
             new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_lostitems) #what if i assign a homeid?
