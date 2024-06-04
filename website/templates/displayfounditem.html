@@ -1,28 +1,49 @@
 {% extends "base.html" %} {% block title %}Display Found Item{% endblock %} {% block content
     %}
 
+
+<div style="margin: 4%;">
     <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
   
         <div  class="">
             <h1 align="center" style="">{{ thisfounditem.name }}</h1>
         </div>
-      </div>
+    </div>
 
 
+    
     <div class="container-fluid rounded-bottom border text-center" style="background-color: white; padding-bottom: 2%; margin-bottom: 2%;">
         
 
-
-        <img src="data:image/png;base64,{{thisfounditem.image_file.decode('utf-8')}}" class="img-fluid" style="width: auto; height: auto;">
-        <b>Date Founded: </b>{{ thisfounditem.date_found  }} 
         <br>
-        <b>Location:</b>{{ thisfounditem.location  }}      
-        </br>
-        <b>contact:</b>{{ thisfounditem.contactinfo  }}      
-        </br>
-        <b>Item Description:</b>
-        </br>
-        <p>{{ thisfounditem.description }}</p>  
+        <div><img src="data:image/png;base64,{{thisfounditem.image_file.decode('utf-8')}}" class="img-fluid border border-muted rounded" style="width: 80%; height: auto;"></div>
+        
+        <div class="display">
+            <br>
+            <div class=" border-muted border-bottom">
+                <h5><b>📅Date Found:</b> {{ thisfounditem.date_found  }} </h5>      
+                <br>
+            </div>
+            <br>
+            <div class=" border-muted border-bottom">
+                <h5><b>📍Location:</b> {{ thisfounditem.location  }} </h5>
+                <br>
+            </div>
+            <br>
+            <div class=" border-muted border-bottom">
+                <h5><b>📱contact:</b> {{ thisfounditem.contactinfo  }}</h5>   
+                <br>
+            </div>
+            <br>
+            <div>
+                <h5><b>🖹Item Description:</b></h5>
+                </br>
+                <p class="description">{{ thisfounditem.description }}</p>
+            </div>
+
+
+        </div>  
     </div>
-    
+</div>   
+
 {% endblock %}
