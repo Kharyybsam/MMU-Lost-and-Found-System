@@ -21,7 +21,7 @@ Home
           <!--Grid for Lost Item-->
     
           <div class="  ">
-            <h4  class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Lost Items</h4>
+            <h4  class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">Lost Items</h4>
           </div>
     
     
@@ -38,12 +38,12 @@ Home
               <b>Location:</b>
               </br>
               {{ x.location }}
+            </br>
+              <b>Reported By:</b>
               </br>
-    
-              <div class="text-muted" style="font-size: xx-small;">
-                Date Reported: {{ x.date_lost}} 
-              </div>
+             {{userdatabase.query.filter_by(id=x.user_id).first().first_name}} 
               </li>
+
              <!--Button for directing to the next page. Only edit content inside div-->
             <div class="col-md-2 " style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
               <button class="button-check" onclick="window.location.href='/lostitem/{{x.id}}';">View Item</button>
@@ -65,7 +65,7 @@ Home
           <!--Grid for Found Item-->
     
           <div>
-            <h4 class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">My Found Items</h4>
+            <h4 class="border border-dark rounded-top text-light fade-in" style="background-color: rgb(46, 58, 77); padding-bottom: 4px; margin-bottom: 0%; margin-top: 2%;">Found Items</h4>
           </div>
     
           <div class="fade-in" style="margin-top: 0%;">
@@ -75,16 +75,18 @@ Home
               <div class="row">
               <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
               <li class="list-group-item col-md-5">
-              <b>Item:</b> {{y.name}}  <!-- place lostitem,data here-->
-             </br>
-             <b>Location:</b> 
-             </br>
-             {{y.location}} <!-- place lostitem,data here-->
+
+              <b>Item: </b> {{y.name}}  <!-- place lostitem,data here-->
+              </br>  
+              <b>Location:</b>
+              </br>
+              {{ y.location }}
             </br>
-            <div class="text-muted" style="font-size: xx-small;">
-            Date Reported: {{ y.date_found}}
-            </div>
-            </li>
+              <b>Reported By:</b>
+              </br>
+             {{userdatabase.query.filter_by(id=y.user_id).first().first_name}} 
+              </li>
+
             <!--Button for directing to the next page. Only edit content inside div-->
             <div class="col-md-2" style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
               <button class="button-check" onclick="window.location.href='/founditem/{{y.id}}';">View Item</button>

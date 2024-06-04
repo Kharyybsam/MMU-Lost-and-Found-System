@@ -21,9 +21,12 @@ def allow_file(filename):
 @login_required
 def home():   #this function wil run whenever we go to "/"
     
+    #Employee.query.filter_by(email=specific_email).all()
+    # alluser = User.query.all()
     alllostitem = Lostitem.query.all()
     allfounditem = Founditem.query.all()
-    return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem)
+    print(User.query.filter_by(id=1).first().first_name)
+    return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem,userdatabase=User)
 
 
 
@@ -86,7 +89,7 @@ def reportfounditempage():
 def reportlostitempage():
     if request.method == 'POST': 
         picture = request.files['pic']
-        itemname = request.form.get('name')#Gets the note from the HTML 
+        itemname = request.form.get('name')
         itemdescription = request.form.get('description')
         location = request.form.get('location')
         imagebase64 = picture.read()
