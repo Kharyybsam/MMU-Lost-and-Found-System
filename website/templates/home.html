@@ -30,8 +30,11 @@ Home
               {% for x in lostitem %}
               <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
               <div class="row" >
-              <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
-              <li class="list-group-item col-md-5">
+                {% if x.image_file == "" %}
+                <img src="{{ replacementimage }}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+                {% else %}
+                <img src="data:image/png;base64,{{x.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+                {% endif %}              <li class="list-group-item col-md-5">
   
               <b>Item: </b> {{x.name}}  <!-- place lostitem,data here-->
               </br>  
@@ -73,8 +76,11 @@ Home
                 {% for y in founditem %}
               <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
               <div class="row">
-              <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
-              <li class="list-group-item col-md-5">
+                {% if y.image_file == "" %}
+                <img src="{{ replacementimage }}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+                {% else %}
+                <img src="data:image/png;base64,{{y.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+                {% endif %}              <li class="list-group-item col-md-5">
 
               <b>Item: </b> {{y.name}}  <!-- place lostitem,data here-->
               </br>  
@@ -102,4 +108,5 @@ Home
     
         </div>
 </div>
+
 {% endblock %}

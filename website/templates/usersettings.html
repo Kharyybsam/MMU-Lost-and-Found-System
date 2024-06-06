@@ -89,7 +89,11 @@
             {% for lostitem in user.lost_item %}
             <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
             <div class="row" >
-            <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+              {% if lostitem.image_file == "" %}
+              <img src="{{ replacementimage }}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+              {% else %}
+              <img src="data:image/png;base64,{{lostitem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+              {% endif %}
             <li class="list-group-item col-md-5">
               
             <b>Item: </b> {{lostitem.name}}  <!-- place lostitem,data here-->
@@ -99,9 +103,7 @@
             {{ lostitem.location }}
             </br>
   
-            <div class="text-muted" style="font-size: xx-small;">
-            Date Reported: {{ lostitem.date_lost}}
-            </div>
+
             </li>
            <!--Button for directing to the next page. Only edit content inside div-->
           <div class="col-md-1 " style="margin-top: 4%; z-index: 1;">
@@ -137,17 +139,19 @@
             {% for founditem in user.found_item %}
             <div class="lost-item-container hover-effect rounded border border-dark" style="margin-bottom: 1%; background-color: white;">
             <div class="row">
-            <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
-            <li class="list-group-item col-md-5">
+              {% if founditem.image_file == "" %}
+              <img src="{{ replacementimage }}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+              {% else %}
+              <img src="data:image/png;base64,{{founditem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+              {% endif %}            
+              <li class="list-group-item col-md-5">
             <b>Item:</b> {{founditem.name}}  <!-- place lostitem,data here-->
             </br>
            <b>Location:</b> 
            </br>
            {{founditem.location}} <!-- place lostitem,data here-->
           </br>
-          <div class="text-muted" style="font-size: xx-small;">
-          Date Reported: {{ founditem.date_found}}
-          </div>
+
           </li>
           <!--Button for directing to the next page. Only edit content inside div-->
           <div class="col-md-1" style="margin-top: 4%; z-index: 1;">

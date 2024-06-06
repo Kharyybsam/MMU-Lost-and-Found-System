@@ -6,10 +6,12 @@ from .models import User
 from os import path
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
+import os
 import base64
 import json
 
 views = Blueprint('views', __name__)
+replacementimage = os.path.join('static','noimageavailable.jpeg')
 
 #allow file extensions
 Allowed_File_Extensions = {'png', 'jpeg', 'jpg'}
@@ -21,12 +23,9 @@ def allow_file(filename):
 @login_required
 def home():   #this function wil run whenever we go to "/"
     
-    #Employee.query.filter_by(email=specific_email).all()
-    # alluser = User.query.all()
     alllostitem = Lostitem.query.all()
     allfounditem = Founditem.query.all()
-    print(User.query.filter_by(id=1).first().first_name)
-    return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem,userdatabase=User)
+    return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem,userdatabase=User,replacementimage=replacementimage)
 
 
 
@@ -63,18 +62,19 @@ def reportitempage():
 @views.route('/reportfounditem',methods=['GET', 'POST'])
 @login_required
 def reportfounditempage():
+
     if request.method == 'POST': 
         picture = request.files['pic']
         itemname = request.form.get('name')
         itemdescription = request.form.get('description')
         location = request.form.get('location')
-        imagebase64 = picture.read()
-        imagebase64 = base64.b64encode(imagebase64)
+        imagebase64 = ''
+        if picture.filename:
+            imagebase64 = picture.read()
+            imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Item is too short!', category='error')
-        elif picture.filename == '':
-             flash('Please upload a picture of the item!',category='error')
-        elif not allow_file(picture.filename):
+        elif not allow_file(picture.filename) and picture.filename != '':
             flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:
             new_founditems = Founditem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
@@ -82,7 +82,10 @@ def reportfounditempage():
             db.session.commit()
             flash('Found Item added!', category='success')
             return redirect(url_for('views.usersettings'))
-    return render_template("reportfounditem.html",user=current_user)
+    itemname = request.form.get('name','')
+    itemdescription = request.form.get('description','')
+    location = request.form.get('location','')    
+    return render_template("reportfounditem.html",user=current_user,replacementimage=replacementimage,itemname=itemname,itemdescription=itemdescription,location=location)
 
 @views.route('/reportlostitem',methods=['GET', 'POST'])
 @login_required
@@ -92,21 +95,24 @@ def reportlostitempage():
         itemname = request.form.get('name')
         itemdescription = request.form.get('description')
         location = request.form.get('location')
-        imagebase64 = picture.read()
-        imagebase64 = base64.b64encode(imagebase64)
+        imagebase64 = ''
+        if picture.filename:
+            imagebase64 = picture.read()
+            imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Item is too short!', category='error') 
-        elif picture.filename == '':
-             flash('Please upload a picture of the item!',category='error')
-        elif not allow_file(picture.name):
+        if not allow_file(picture.filename) and picture.filename != '':
             flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
-        else:
+        else:               
             new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
             db.session.add(new_lostitems) #what if i assign a homeid?
             db.session.commit()
             flash('Lost Item added!', category='success')      
             return redirect(url_for('views.usersettings'))
-    return render_template("reportlostitem.html",user=current_user)
+    itemname = request.form.get('name','')
+    itemdescription = request.form.get('description','')
+    location = request.form.get('location','')            
+    return render_template("reportlostitem.html",user=current_user,replacementimage=replacementimage,itemname=itemname,itemdescription=itemdescription)
 
 @views.route('/user-settings',methods=['GET','POST'])
 @login_required
@@ -117,7 +123,6 @@ def usersettings():
         password = request.form.get('password')
         contactinfo = request.form.get('contactinfo')
         user = User.query.filter_by(email=email).first()
-        print(user.email)
         user.email = email
         user.first_name = first_name
         if password != '':
@@ -125,14 +130,14 @@ def usersettings():
         user.contactinfo = contactinfo
         flash('Your information has been saved!',category='info')
         db.session.commit()
-    return render_template("usersettings.html",user=current_user,email=current_user.email,first_name=current_user.first_name,contactinfo=current_user.contactinfo)
+    return render_template("usersettings.html",user=current_user,email=current_user.email,first_name=current_user.first_name,contactinfo=current_user.contactinfo,replacementimage=replacementimage)
 
 @views.route('/lostitem/<int:lostitem_id>', methods=['GET', 'POST'])
 def display_lostitem(lostitem_id):
     thislostitem = Lostitem.query.get(lostitem_id)
-    return render_template('displaylostitem.html',user=current_user,thislostitem=thislostitem)
+    return render_template('displaylostitem.html',user=current_user,thislostitem=thislostitem,replacementimage=replacementimage,userdatabase=User)
 
 @views.route('/founditem/<int:founditem_id>', methods=['GET', 'POST'])
 def display_founditem(founditem_id):
     thisfounditem = Founditem.query.get(founditem_id)
-    return render_template('displayfounditem.html',user=current_user,thisfounditem=thisfounditem)
+    return render_template('displayfounditem.html',user=current_user,thisfounditem=thisfounditem,replacementimage=replacementimage,userdatabase=User)
