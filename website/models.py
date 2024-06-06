@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
 class Lostitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(1000))             #it will crash if perru is changed. try click refresh and reset cache in browser next time
+    name = db.Column(db.String(1000))             
     description = db.Column(db.String(999999))
     date_lost = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
