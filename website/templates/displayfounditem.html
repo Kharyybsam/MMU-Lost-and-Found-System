@@ -46,12 +46,13 @@
             </div>
             <br></br>
 
+            {% if user.first_name == userdatabase.query.filter_by(id=thisfounditem.user_id).first().first_name %}
             <div align="center" style="margin: 2%;">
-                <button type="submit" class="btn text-light hover-effect btn-danger" >
+                <button type="submit" class="btn text-light hover-effect btn-danger" onClick="deleteFoundItem({{ thisfounditem.id }})">
                     Delete Item
                 </button>
-            </div>
-
+            </div>                
+            {% endif %}
 
         </div>  
     </div>
