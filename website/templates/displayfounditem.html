@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Bruh{% endblock %} {% block content
+{% extends "base.html" %} {% block title %}Display Found Item{% endblock %} {% block content
     %}
 
 
@@ -16,8 +16,12 @@
         
 
         <br>
-        <div><img src="data:image/png;base64,{{thisfounditem.image_file.decode('utf-8')}}" class="img-fluid border border-muted rounded" style="width: 80%; height: auto;"></div>
-        
+        <div>
+            {% if thisfounditem.image_file == "" %}
+            <img src="{{ replacementimage }}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+            {% else %}
+            <img src="data:image/png;base64,{{thisfounditem.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
+            {% endif %}        
         <div class="display">
             <br>
             <div class=" border-muted border-bottom">
@@ -31,7 +35,7 @@
             </div>
             <br>
             <div class=" border-muted border-bottom">
-                <h5><b>📱contact:</b> {{ thisfounditem.contactinfo  }}</h5>   
+                <h5><b>📰Reported By:</b> {{ userdatabase.query.filter_by(id=thisfounditem.user_id).first().first_name  }} ({{ userdatabase.query.filter_by(id=thisfounditem.user_id).first().contactinfo}})</h5>   
                 <br>
             </div>
             <br>

@@ -59,7 +59,7 @@ def sign_up():
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
-    #this 4 is used to remember input
+    #this is used to remember input
     first_name = request.form.get('firstName','')
     password1 = request.form.get('password1','')
     email = request.form.get('email', '')
