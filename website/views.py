@@ -95,7 +95,7 @@ def reportlostitempage():
             flash('Item is too short!', category='error') 
         elif picture.filename == '':
              flash('Please upload a picture of the item!',category='error')
-        elif not allow_file(picture.name):
+        elif not allow_file(picture.filename):
             flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:
             new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
