@@ -44,15 +44,15 @@
                     </br>
                     <p class="description">{{ thislostitem.description }}</p>
                 </div>
-                <br></br>
+                    
 
-                <div align="center" style="margin: 2%;">
-                    <button type="submit" class="btn text-light hover-effect btn-danger" >
-                        Delete Item
-                    </button>
-                </div>
-    
-    
+            {% if user.first_name == userdatabase.query.filter_by(id=thislostitem.user_id).first().first_name %}
+            <div align="center" style="margin: 2%;">
+                <button type="submit" class="btn text-light hover-effect btn-danger" onClick="deleteLostItem({{ thislostitem.id }})">
+                    Delete Item
+                </button>
+            </div>                
+            {% endif %} 
             </div>  
         </div>
     </div>  
