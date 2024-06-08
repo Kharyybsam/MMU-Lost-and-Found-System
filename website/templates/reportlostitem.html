@@ -14,8 +14,9 @@
 <form method="POST" enctype="multipart/form-data">
 <label for="pic">Please upload an image of the item you lost if available.</label>
 <br/>
-<input type="file" name="pic" />
-
+<input type="file" name="pic" id="fileInput" accept="image/*, application/pdf" onchange="previewImage()"/>
+<br>
+<img id="previewImg" src="{{url_for('static', filename='noimageavailable.jpeg')}}" alt="Image preview" style="display: none; max-width: 550px; max-height: 2000px;">
 <br/><br>
 <p>What Item did you lose?</p>
   <textarea rows="1" name="name" id="name" class="form-control" placeholder="Wallet,Hostel Key,etc.." >{{itemname}}</textarea>
