@@ -1,9 +1,19 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
 %}
+
+<div style="margin-left: 10%; margin-right: 10%;">
 <form method="POST">
-  <h3 align="center">Login</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
+  <div class="rounded-top text-light" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; margin-left: 2%; margin-right: 2%; background-color: rgb(46, 58, 77);" >
+  
+    <div  class="">
+        <h1 align="center" style="">Login</h1>
+    </div>
+  </div>
+
+  <div class="small-margin rounded-bottom" style="background-color: white;">
+  <div class="form-group" style="margin-left: 2%; margin-right: 2%;">
+    <br>
+    <label for="email"><b>Email Address</b></label>
     <input
       type="email"
       class="form-control"
@@ -13,8 +23,9 @@
       placeholder="Enter email"
     />
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
+  <div class="form-group small-margin">
+    <br>
+    <label for="password"><b>Password</b></label>
     <input
       type="password"
       class="form-control"
@@ -24,7 +35,11 @@
       placeholder="Enter password"
     />
   </div>
-  <br />
-  <button type="submit" class="btn btn-primary">Login</button>
+  <br>
+  <button type="submit" class="btn btn-primary small-margin">Login</button>
+</br>
+<br>
 </form>
+</div>
+</div>
 {% endblock %}
