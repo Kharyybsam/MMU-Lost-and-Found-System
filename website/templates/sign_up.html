@@ -1,10 +1,20 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
 content %}
+
+<div style="margin-left: 10%; margin-right: 10%;">
 <form method="POST">
+  <div class="rounded-top text-light" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; margin-left: 2%; margin-right: 2%; background-color: rgb(46, 58, 77);" >
   
-  <h3 align="center">Sign Up</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
+    <div  class="">
+        <h1 align="center" style="">Login</h1>
+    </div>
+  </div>
+
+
+  <div class="small-margin rounded-bottom" style="background-color: white;">
+  <br>
+  <div class="form-group small-margin">
+    <label for="email"><b>Email Address</b></label>
     <input
       type="email"
       class="form-control"
@@ -14,8 +24,9 @@ content %}
       placeholder="Enter email"
     />
   </div>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
+  <br>
+  <div class="form-group small-margin">
+    <label for="firstName"><b>First Name</b></label>
     <input
       type="text"
       class="form-control"
@@ -25,8 +36,9 @@ content %}
       placeholder="Enter first name"
     />
   </div>
-  <div class="form-group">
-    <label for="password1">Password</label>
+  <br>
+  <div class="form-group small-margin">
+    <label for="password1"><b>Password</b></label>
     <input
       type="password"
       class="form-control"
@@ -36,8 +48,9 @@ content %}
       placeholder="Enter password"
     />
   </div>
-  <div class="form-group">
-    <label for="password2">Password (Confirm)</label>
+  <br>
+  <div class="form-group small-margin">
+    <label for="password2"><b>Password (Confirm)</b></label>
     <input
       type="password"
       class="form-control"
@@ -47,8 +60,9 @@ content %}
       placeholder="Confirm password"
     />
   </div>
-  <div class="form-group">
-    <label for="contactinfo">How do you want people to contact you?</label>
+  <br>
+  <div class="form-group small-margin">
+    <label for="contactinfo"><b>How do you want people to contact you?</b></label>
     <input
       type="text"
       class="form-control"
@@ -58,8 +72,13 @@ content %}
       placeholder="Your phone number,email,Discord username, etc.."
     />
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <br>
+  <button type="submit" class="btn btn-primary small-margin">Submit</button>
+  <br>
+  <br>
+</div>
 </form>
+</div>
 
 {% endblock %}
 

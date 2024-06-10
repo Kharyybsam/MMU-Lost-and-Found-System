@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <style>
-    h1 .h2 .h3 .h4 .h5 .h6{
+    h1 h2 h3 h4 h5 h6{
+        font-weight: bold;
         font-family: 'Montserrat', sans-serif;
-        font-weight: bolder;
-        font-size: larger;
     }
 
     p{
@@ -133,6 +132,7 @@
           color: #f1f1f1;
           padding-left: 10%;
           padding-right: 10%;
+          border-radius: 5%;
 
         }
         .display {
@@ -144,6 +144,51 @@
         }
         .description{
           font-size: x-large;
+        }
+        .small-margin{
+          margin-left: 2%;
+          margin-right: 2%;
+        }
+        .fixed{
+          resize: none;
+        }
+        .back-colour{
+          background-color: white ;
+        }
+        .block-colour{
+          background-image: linear-gradient(to right, rgba(121,159,203,255) , rgba(189,180,255,255));
+        }
+        .title-colour{
+          background-color: rgba(149,180,204,255);
+        }
+        .title-colour1{
+          background-color: rgba(173,162,255,255);
+        }
+        .title-colour3{
+          background-color: rgba(238,105,105,255);
+        }
+        .block-colour2{
+          background-color: rgba(253,170,170,255);
+        }
+        .block-colour3{
+          background-color: rgba(184,216,190,255);
+        }
+        .bold-colour{
+          color: rgba(254,44,84,255);
+        }
+        .bold-colour1{
+          color:rgba(2,192,60,255) ;
+        }
+        .block-colour4{
+          background-color: rgb(58, 58, 146);
+          color: white;
+          padding: 6px 12px;
+        }
+        .bb{
+          text-decoration: none;
+          font-weight: bold;
+          font-size: x-large;
+          color: white;
         }
 
   </style>
@@ -176,20 +221,20 @@
 
     <title>{% block title %}Home{% endblock %}</title>
   </head>
-  <body style="background-color: rgba(46, 58, 77, 0.2); ">
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(46, 58, 77);">
+  <body style="background-color: rgba(211, 211, 211, 0.4); ">
+<nav class="navbar navbar-expand-lg navbar-dark block-colour" >
   <div class="collapse navbar-collapse" id="navbar" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
-    <div class="navbar-nav">
+    <div class="">
       {% if user.is_authenticated %}
-      <a class="nav-item navbar-brand" id="home" href="/">🏠Home</a>
-      <a class="nav-item navbar-brand" id="reportitem" href="/reportitem">🗒️Report Item</a>
-      <a class="nav-item navbar-brand" id="user-settings" href="/user-settings">👤User</a>
+      <a class="bb" id="home" href="/" style="text-decoration: none;">🏠Home</a>
+      <a class="bb" id="reportitem" href="/reportitem" style="text-decoration: none;">🗒️Report Item</a>
+      <a class="bb" id="user-settings" href="/user-settings" style="text-decoration: none;">👤User</a>
       {% else %}
       <a class="nav-item navbar-brand ml-auto" id="login" href="/login">Login</a>
       <a class="nav-item navbar-brand" id="signUp" href="/sign-up">Sign Up</a>
       {% endif %}
     </div>
-    <div class="navbar-nav ml-auto">
+    <div class=" ml-auto">
       {% if user.is_authenticated %}
       <a class="nav-item navbar-brand hover-effect" onclick="logoutConfirmation()" id="logout" href="#">🚪Logout</a>
       {% endif %}
@@ -232,6 +277,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
     <script>
       // JavaScript to add fade-in animation
       document.addEventListener("DOMContentLoaded", function() {
@@ -253,19 +299,6 @@
   }
 </script>
 <script>
-  //javascript for the faq (MIGHT BE REPLACED)
-  document.addEventListener("DOMContentLoaded", function() {
-      var toggleElements = document.querySelectorAll('.fade-in .toggle');
-      toggleElements.forEach(function(toggle) {
-          toggle.addEventListener('click', function() {
-              var content = this.nextElementSibling;
-              content.classList.toggle('expanded');
-              content.style.display = (content.style.display === 'none') ? 'block' : 'none';
-          });
-      });
-  });
-  </script>
-<script>
   //javascript for collapsable button
   function toggleContent(button) {
       var content = button.nextElementSibling;
@@ -280,6 +313,11 @@
           arrow.classList.add('up');
       }
   }
+</script>
+<script>
+  //opens the report item by default
+  window.addEventListener('load', (event) => {
+    toggleContent(document.getElementById("showbutton"))});
 </script>
 
 
@@ -331,6 +369,7 @@ function deleteFoundItem(founditemid) {
 </script>
 
 <script>
+  // This is the javascript to preview 
   function previewImage(){
     const preview = document.getElementById('previewImg');
     const file = document.getElementById('fileInput').files[0];
