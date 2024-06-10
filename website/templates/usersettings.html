@@ -109,12 +109,6 @@
           <div class="col-md-1 " style="margin-top: 4%; z-index: 1;">
             <button class="button-check" style="padding: 40%" onclick="window.location.href='/lostitem/{{lostitem.id}}';">View Item</button>
           </div>
-          <!--Button to delete content-->
-          <div class="col-md-1" style="padding-left: 12%;">
-              <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
             </div>
           </div>
             
@@ -157,12 +151,7 @@
           <div class="col-md-1" style="margin-top: 4%; z-index: 1;">
             <button class="button-check" style="padding: 40%" onclick="window.location.href='/founditem/{{founditem.id}}';">View Item</button>
           </div>
-          <!--Button to delete content-->
-          <div class="col-md-1" style="padding-left: 12%;">
-            <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})"> <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+
           </div>
           </div>
             {% endfor %}

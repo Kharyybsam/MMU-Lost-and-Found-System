@@ -333,6 +333,25 @@ function deleteFoundItem(founditemid) {
  }
 }
 </script>
+
+<script>
+  function previewImage(){
+    const preview = document.getElementById('previewImg');
+    const file = document.getElementById('fileInput').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', function(){
+      preview.src = reader.result;
+      preview.style.display = 'block';
+      }, false);
+
+      if (file){
+        reader.readAsDataURL(file);
+      }
+    }
+
+</script>
+
 {% endblock %}
   </body>
 </html>
