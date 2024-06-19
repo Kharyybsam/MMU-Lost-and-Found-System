@@ -22,10 +22,20 @@ def allow_file(filename):
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():   #this function wil run whenever we go to "/"
-    
     alllostitem = Lostitem.query.all()
     allfounditem = Founditem.query.all()
-    return render_template("home.html", user=current_user,lostitem=alllostitem,founditem=allfounditem,userdatabase=User,replacementimage=replacementimage)
+    req_lost_search = None
+    req_found_search = None 
+
+    if request.method == 'POST':
+        search_query = request.form.get('search')
+
+        if search_query:
+            req_lost_search = Lostitem.query.filter(Lostitem.name.contains(search_query)).all()
+            req_found_search = Founditem.query.filter(Founditem.name.contains(search_query)).all()
+
+    
+    return render_template("home.html", user=current_user,lostitem=req_lost_search if req_lost_search is not None else alllostitem,founditem=req_found_search if req_found_search is not None else allfounditem,userdatabase=User,replacementimage=replacementimage)
 
 
 

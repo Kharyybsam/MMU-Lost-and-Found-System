@@ -3,10 +3,10 @@
 
 
 
-<div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+<div class="rounded-top text-light title-colour1" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%;" >
 
     <div  class="">
-        <h1 align="center" style="">🗒️ Report Item </h1>
+        <h1 align="center" style="font-weight: bold;">🗒️ Report Item </h1>
     </div>
 
 </div>
@@ -21,7 +21,7 @@
         <div class="col-md-6 col-xs-12 fade-in">
             <!--First Grid-->
 
-            <div class=" border border-dark rounded-top" style="padding:15px; background-color: rgb(46, 58, 77);">
+            <div class=" border border-dark rounded-top block-colour2" style="padding:15px;">
                 <a href="/reportlostitem" class="text-light btn hover-effect" style="width: 40%;">
 
                     <div class="border border-white bg-danger" style=" padding: 10px;"><b>LOST</b></div>
@@ -32,7 +32,7 @@
             </div>
 
             <div class=" border border-dark rounded-bottom" style="padding: 25px;">
-                Lost any items on your journey in MMU? Report it Here!!!
+                Lost an item at MMU? Report it Here!
             </div>
 
             <div>
@@ -44,7 +44,7 @@
         <div class="col-md-6 col-xs-12 fade-in">
             <!--Second Grid-->
 
-            <div class=" border border-dark rounded-top" style="padding: 15px; background-color: rgb(46, 58, 77);">
+            <div class=" border border-dark rounded-top block-colour3" style="padding: 15px;">
                 <a href="/reportfounditem" class="text-light btn hover-effect" style="width: 40%;">
 
                     <div class="border border-white bg-success" style=" padding: 10px;"><b>FOUND</b></div>
@@ -55,7 +55,7 @@
             </div>
 
             <div class=" border border-dark rounded-bottom" style="padding: 25px;">
-                Discovered someone else treasure in MMU? tell it here!!!
+                Found someone else item at MMU? Report it here!
             </div>
 
             <div>
@@ -68,11 +68,35 @@
     </div>
 
     <div class="fade-in">
-        <h3 class="toggle">FAQ❔</h3>
-        <div class="content">
-            <p>1. Why are you gay?</p>
-        </div>
+    <button id="showbutton" class="collapsible" onclick="toggleContent(this)"
+    style="width: 100%;"
+    >
+    <b>Tips</b>
+    <span class="arrow up"></span>
+    </button>
+
+    <div class="container-fluid text-left">
+            <div class="">
+                <br>
+                <h4><b>I just found an item, what should i do?</b></h4><br>
+                <h6>Remember these 3 Things when you encounter an item!</h6><br>
+                <p>1. 📄 Specify any details regarding the item.</p>
+                <p>2. 🕵️ Look for any details of the owner's identity in the item.</p>
+                <p>3. 🗣️ Always confirm the lost item owner identity before returning it.</p>
+                <br>
+            </div>
+
+            <div class="">
+                <h4><b>I just lost my item, What should i do?</b></h4><br>
+                <h6>Remember The 3W when Reporting!</h6><br>
+                <p>1. 🤔 What? Any details that is special to your item? Say it!</p>
+                <p>2. ⏲️ When? At what time do you realise it's gone.</p>
+                <p>3. 🤷 Where? Try to remember and state where you last seen the item.</p>
+            </div>
+
     </div>
+    </div>
+</div>
 
 </div>
 
