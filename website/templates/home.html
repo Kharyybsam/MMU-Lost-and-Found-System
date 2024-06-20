@@ -15,14 +15,15 @@ Home
 <div class="container-fluid rounded-bottom border text-center back-colour" style="padding-bottom: 2%; margin-bottom: 2%;">
     <div class="row back-colour" >
        <div class="col-md-12 mb-4">
-        <form class="form-inline my-2 my-lg-0" action="/" method='POST'>
-          <input class ="form-control mr-sm-2"
+        <br>
+        <form class="form-inline" action="/" method='POST'>
+          <input class ="form-control col-11"
             type="search"
             id="search"
             name="search"
-            placeholder="Search item name"
+            placeholder="Search item name 🔍"
             aria-label="Search"
-          /><button type="submit" class="btn btn-primary small-margin">Search</button>
+          /><button type="submit" class="block-colour4 base-button ">Search</button>
         </form>
        
         <!--This function is the result after user has given an input in the search bar, just copy and paste from the found and lost grid codes but added jinja for req_search--> 
@@ -36,7 +37,7 @@ Home
                         {% else %}
                         <img src="data:image/png;base64,{{item.image_file.decode('utf-8')}}" class="img-fluid col-md-4" style="width: auto; height: auto;">
                         {% endif %}
-                        <li class="list-group-item col-md-5">
+                        <li class="list-group-item col-md-5 text-left">
                             <b class="bold-colour">Item: </b> {{item.name}}
                             </br>
                             <b class="bold-colour">Location:</b>
