@@ -15,6 +15,7 @@
 
   <!--Place other profile Info Here-->
   <form method="POST">
+    <br>
 
     <h3>View or change your details.</h3>
     </br>
@@ -61,7 +62,7 @@
         placeholder="New password Here..."
       />
     </div>
-    <button type="submit" class="block-colour4">Save</button>
+    <button type="submit" class="title-colour3 base-button hover-effect">Save</button>
   </form>
 
   <!--No profile info past here-->
@@ -106,10 +107,18 @@
 
             </li> 
            <!--Button for directing to the next page. Only edit content inside div-->
-          <div class="col-md-1 " style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
+          <div class="col-md-1 " style="margin-top: 4%; margin-bottom: 5%; z-index: 1;">
             <button class="button-check" style="padding: 40%" onclick="window.location.href='/lostitem/{{lostitem.id}}';">View Item</button>
           </div>
+
+          <div class="col-1 closing-button">
+            <button type="button" class="close" onClick="deleteLostItem({{ lostitem.id }})" style="color: red;">
+              <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+              <span aria-hidden="true">&times;</span>
+            </button>
             </div>
+
+          </div>
           </div>
             
             {% endfor %}
@@ -148,8 +157,15 @@
 
           </li>
           <!--Button for directing to the next page. Only edit content inside div-->
-          <div class="col-md-1" style="margin-top: 4%; z-index: 1;">
+          <div class="col-1" style="margin-top: 4%; z-index: 1;">
             <button class="button-check" style="padding: 40%" onclick="window.location.href='/founditem/{{founditem.id}}';">View Item</button>
+          </div>
+          
+          <div class="col-1 closing-button">
+          <button type="button" class="close" onClick="deleteFoundItem({{ founditem.id }})" style="color: red;">
+            <!-- Ignore this error. It is caused by javascript usage in html which is not supported.-->
+            <span aria-hidden="true">&times;</span>
+          </button>
           </div>
 
           </div>
