@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Report Lost Item{% endblock %} {% block content
   %}
 
-  <div class="rounded-top text-light fade-in" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+  <div class="rounded-top text-light fade-in block-colour2" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%;" >
 
     <div  class="">
       <h1 align="center" style="">Report Lost Item </h1>
@@ -12,6 +12,7 @@
 
 <div>
 <form method="POST" enctype="multipart/form-data">
+  <br/>
 <label for="pic">Please upload an image of the item you lost if available.</label>
 <br/>
 <input type="file" name="pic" id="fileInput" accept="image/*, application/pdf" onchange="previewImage()"/>
@@ -51,7 +52,7 @@
 
 
   <div align="center" style="margin: 2%;">
-    <button type="submit" class="btn text-light hover-effect" style="background-color: rgb(46, 58, 77);">Add Item</button>
+    <button type="submit" class="hover-effect  block-colour2 base-button">Add Item</button>
   </div>
 </form>
 </div>
