@@ -46,13 +46,23 @@
                 </div>
                     
 
-            {% if user.first_name == userdatabase.query.filter_by(id=thislostitem.user_id).first().first_name %}
+            
             <div align="center" style="margin: 2%;">
+                {% if user.first_name == userdatabase.query.filter_by(id=thislostitem.user_id).first().first_name %}
                 <button type="submit" class="btn text-light hover-effect btn-danger" onClick="deleteLostItem({{ thislostitem.id }})">
                     Delete Item
                 </button>
+                {% endif %} 
+
+                {% if user.first_name == 'Admin' %} <!--If user is admin, they can delete any troll post-->
+                <button type="button" class="btn btn-danger text-light"
+                onClick="deleteLostItem({{ thislostitem.id }})" style=" padding: 6px 8px;">Delete Item
+                  <span aria-hidden="true"></span>
+                </button>
+                {% endif %}
+
+            
             </div>                
-            {% endif %} 
             </div>  
         </div>
     </div>  
