@@ -201,6 +201,7 @@
           margin-left: 4%;
         }
 
+
   </style>
 
 
@@ -332,10 +333,10 @@
 
 
 {% block javascript %}
-    <script type="text/javascript">
+<script type="text/javascript">
 
   function deleteLostItem(lostitemid) {
-    if(confirm("Are you sure want to delete the lost item?")){
+  if(confirm("Are you sure want to delete the lost item?")){
   fetch("/delete-lostitem", {
     method: "POST",
     headers: {
@@ -344,8 +345,8 @@
     body: JSON.stringify({ lostitemid: lostitemid }),
   }).then(response => {
     if (response.ok){
-    alert("Lost item deleted successfully!")
-    window.location.href = "/user-settings"; ///user-settings
+      alert("Lost item deleted successfully!")
+    window.location.href = "/"; ///user-settings
   } else {}
   })
   .catch(error =>{
@@ -367,7 +368,7 @@ function deleteFoundItem(founditemid) {
   .then(response => {
     if (response.ok){
       alert("Found item deleted successfully!")
-    window.location.href = "/user-settings"; ///user-settings
+    window.location.href = "/"; ///user-settings
   } else{}
   })
   .catch(error =>{

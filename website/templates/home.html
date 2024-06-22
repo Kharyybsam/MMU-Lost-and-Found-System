@@ -103,8 +103,18 @@ Home
              <!--Button for directing to the next page. Only edit content inside div-->
             <div class="col-md-2 " style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
               <button class="button-check" onclick="window.location.href='/lostitem/{{x.id}}';">View Item</button>
+ 
+              {% if user.first_name == 'Admin' %} <!--If user is admin, they can delete any troll post-->
+              <button type="button" class="btn btn-danger text-light"
+              onClick="deleteLostItem({{ x.id }})" style=" padding: 6px 8px;">Delete
+                <span aria-hidden="true"></span>
+              </button>
+              {% else %}
+              {% endif %}
+
             </div>
             <!--Button to delete content(FUTURE/NO)-->
+
               </div>
             </div>
               
@@ -156,6 +166,15 @@ Home
             <!--Button for directing to the next page. Only edit content inside div-->
             <div class="col-md-2" style="margin-top: 5%; margin-bottom: 5%; z-index: 1;">
               <button class="button-check" onclick="window.location.href='/founditem/{{y.id}}';">View Item</button>
+            
+              {% if user.first_name == 'Admin' %} <!--If user is admin, they can delete any troll post-->
+              <button type="button" class="btn btn-danger text-light"
+              onClick="deleteFoundItem({{ y.id }})" style=" padding: 6px 8px;">Delete
+                <span aria-hidden="true"></span>
+              </button>
+              {% else %}
+              {% endif %}
+
             </div>
             <!--Button to delete content(FUTURE/NO)-->
             </div>
