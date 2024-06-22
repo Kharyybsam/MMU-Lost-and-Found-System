@@ -48,6 +48,9 @@ def delete_lostitem():
         if lostitem.user_id == current_user.id:
             db.session.delete(lostitem)
             db.session.commit()
+        elif current_user.first_name == 'Admin':
+            db.session.delete(lostitem)
+            db.session.commit()
 
     return jsonify({})
 
@@ -58,6 +61,9 @@ def delete_founditem():
     founditem = Founditem.query.get(founditemid)
     if founditem:
         if founditem.user_id == current_user.id:
+            db.session.delete(founditem)
+            db.session.commit()
+        elif current_user.first_name == 'Admin':
             db.session.delete(founditem)
             db.session.commit()
 
@@ -111,7 +117,7 @@ def reportlostitempage():
             imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Item is too short!', category='error') 
-        if not allow_file(picture.filename) and picture.filename != '':
+        elif not allow_file(picture.filename) and picture.filename != '':
             flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:               
             new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
@@ -132,7 +138,7 @@ def usersettings():
         first_name = request.form.get('firstName')
         password = request.form.get('password')
         contactinfo = request.form.get('contactinfo')
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=current_user.email).first()
         user.email = email
         user.first_name = first_name
         if password != '':

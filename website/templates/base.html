@@ -180,9 +180,15 @@
           color:rgba(2,192,60,255) ;
         }
         .block-colour4{
-          background-color: rgb(58, 58, 146);
+          background-color: rgb(46, 58, 77);
+        }
+        .base-button{
           color: white;
           padding: 6px 12px;
+          border-radius: 5px;
+        }
+        .base-button:hover{
+          
         }
         .bb{
           text-decoration: none;
@@ -190,6 +196,11 @@
           font-size: x-large;
           color: white;
         }
+        .closing-button{
+          margin-top: 3%;
+          margin-left: 4%;
+        }
+
 
   </style>
 
@@ -314,18 +325,18 @@
       }
   }
 </script>
-<script>
+<!--script>
   //opens the report item by default
   window.addEventListener('load', (event) => {
     toggleContent(document.getElementById("showbutton"))});
-</script>
+</script -->
 
 
 {% block javascript %}
-    <script type="text/javascript">
+<script type="text/javascript">
 
   function deleteLostItem(lostitemid) {
-    if(confirm("Are you sure want to delete the lost item?")){
+  if(confirm("Are you sure want to delete the lost item?")){
   fetch("/delete-lostitem", {
     method: "POST",
     headers: {
@@ -334,8 +345,8 @@
     body: JSON.stringify({ lostitemid: lostitemid }),
   }).then(response => {
     if (response.ok){
-    alert("Lost item deleted successfully!")
-    window.location.href = "/user-settings"; ///user-settings
+      alert("Lost item deleted successfully!")
+    window.location.href = "/"; ///user-settings
   } else {}
   })
   .catch(error =>{
@@ -357,7 +368,7 @@ function deleteFoundItem(founditemid) {
   .then(response => {
     if (response.ok){
       alert("Found item deleted successfully!")
-    window.location.href = "/user-settings"; ///user-settings
+    window.location.href = "/"; ///user-settings
   } else{}
   })
   .catch(error =>{

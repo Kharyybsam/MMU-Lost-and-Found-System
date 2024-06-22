@@ -3,7 +3,7 @@
 
 
 <div style="margin: 4%;">
-    <div class="rounded-top text-light " style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%; background-color: rgb(46, 58, 77);" >
+    <div class="rounded-top text-light block-colour3" style="padding-top: 5px; padding-bottom: 5px; margin-top: 2%;" >
   
         <div  class="">
             <h1 align="center" style="">{{ thisfounditem.name }}</h1>
@@ -46,13 +46,22 @@
             </div>
             <br></br>
 
-            {% if user.first_name == userdatabase.query.filter_by(id=thisfounditem.user_id).first().first_name %}
+            
             <div align="center" style="margin: 2%;">
+                {% if user.first_name == userdatabase.query.filter_by(id=thisfounditem.user_id).first().first_name %}
                 <button type="submit" class="btn text-light hover-effect btn-danger" onClick="deleteFoundItem({{ thisfounditem.id }})">
                     Delete Item
                 </button>
+                {% else %}
+                {% endif %}
+
+                {% if user.first_name == 'Admin' %} <!--If user is admin, they can delete any post-->
+                <button type="submit" class="btn text-light hover-effect btn-danger" onClick="deleteFoundItem({{ thisfounditem.id }})" style=" padding: 6px 8px;">Delete Item</button>
+                {% else %}
+                {% endif %}
+
             </div>                
-            {% endif %}
+
 
         </div>  
     </div>
