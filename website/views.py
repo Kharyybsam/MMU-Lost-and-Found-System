@@ -111,7 +111,7 @@ def reportlostitempage():
             imagebase64 = base64.b64encode(imagebase64)
         if len(itemname) < 1:
             flash('Item is too short!', category='error') 
-        if not allow_file(picture.filename) and picture.filename != '':
+        elif not allow_file(picture.filename) and picture.filename != '':
             flash('Invalid file type! Only PNG, JPEG and JPG are allowed.',category='error')
         else:               
             new_lostitems = Lostitem(name=itemname,description=itemdescription, user_id=current_user.id,image_file=imagebase64,location=location)  #providing the schema for the note 
